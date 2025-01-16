@@ -35,8 +35,9 @@
 
 ---
 
-## Showcase
+## Screenshots
 
-<p align="center">
-  <img src="./github/images/show.jpg" alt="Showcase">
-</p>
+| Description | Image |
+|-------------|-------|
+| **Menu**     | <img src="./github/images/menu.png" alt="Menu" width="600"> |
+
