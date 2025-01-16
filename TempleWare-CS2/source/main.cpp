@@ -16,7 +16,7 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
         return true;
     }
 
-    if (uMsg == WM_KEYDOWN && wParam == VK_DELETE) {
+    if (uMsg == WM_KEYDOWN && wParam == VK_END) {
         showMenu = !showMenu;
     }
 
