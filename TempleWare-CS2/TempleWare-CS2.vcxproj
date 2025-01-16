@@ -177,9 +177,10 @@
     <ClInclude Include="external\imgui\imstb_rectpack.h" />
     <ClInclude Include="external\imgui\imstb_textedit.h" />
     <ClInclude Include="external\imgui\imstb_truetype.h" />
+    <ClInclude Include="external\json\json.hpp" />
     <ClInclude Include="source\features\visuals\visuals.h" />
     <ClInclude Include="source\globals\globals.h" />
-    <ClInclude Include="source\globals\offsets.h" />
+    <ClInclude Include="source\offsets\offsets.h" />
     <ClInclude Include="source\includes.h" />
     <ClInclude Include="external\kiero\kiero.h" />
     <ClInclude Include="external\kiero\minhook\include\MinHook.h" />

@@ -1,6 +1,6 @@
 #include "visuals.h"
 #include "../../globals/globals.h"
-#include "../../globals/offsets.h"
+#include "../../offsets/offsets.h"
 #include "../../math/math.h"
 #include <cstdint>
 #include <cstdio>
