@@ -1,21 +1,7 @@
 #include "menu.h"
-#include "../features/visuals/visuals.h"
-#include "../offsets/offsets.h"
-#include "../globals/globals.h"
+#include "../config/config.h"
 
-ImVec4 glowColor = ImVec4(1.0f, 0.0f, 0.0f, 1.0f);
-ImVec4 tracersColor = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
-ImVec4 espColor = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
-bool showMenu = true;
-int activeTab = 0;
-
-extern ID3D11Device* pDevice;
-extern ID3D11DeviceContext* pContext;
-extern ID3D11RenderTargetView* mainRenderTargetView;
-extern HWND window;
-
-void ApplyImGuiTheme()
-{
+void ApplyImGuiTheme() {
     ImGui::StyleColorsDark();
 
     ImGuiStyle& style = ImGui::GetStyle();
@@ -56,23 +42,34 @@ void ApplyImGuiTheme()
     style.FramePadding = ImVec2(5, 5);
 }
 
-void InitImGui()
-{
+Menu::Menu() {
+    mainRenderTargetView = nullptr;
+    pContext = nullptr;
+    pDevice = nullptr;
+    window = nullptr;
+
+    activeTab = 0;
+    showMenu = true;
+}
+
+void Menu::init(HWND& window, ID3D11Device* pDevice, ID3D11DeviceContext* pContext, ID3D11RenderTargetView* mainRenderTargetView) {
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO();
-    io.ConfigFlags = ImGuiConfigFlags_NavEnableKeyboard;
-    io.ConfigWindowsMoveFromTitleBarOnly = true;
+    io.ConfigFlags = ImGuiConfigFlags_NoMouseCursorChange;
     ImGui_ImplWin32_Init(window);
     ImGui_ImplDX11_Init(pDevice, pContext);
 
     ApplyImGuiTheme();
 
     io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\arial.ttf", 16.0f);
+
+    this->window = &window;
+    this->pDevice = pDevice;
+    this->pContext = pContext;
+    this->mainRenderTargetView = mainRenderTargetView;
 }
 
-void RenderImGui()
-{
-
+void Menu::render() {
     ImGui_ImplDX11_NewFrame();
     ImGui_ImplWin32_NewFrame();
     ImGui::NewFrame();
@@ -81,24 +78,6 @@ void RenderImGui()
     io.MouseDrawCursor = showMenu;
     io.WantCaptureKeyboard = showMenu;
     io.WantCaptureMouse = showMenu;
-
-    Visuals visuals;
-
-    if (esp) {
-        visuals.PlayerESP();
-    }
-
-    if (showNameTags) {
-        visuals.PlayerNameTags();
-    }
-
-    if (showTracers) {
-        visuals.PlayerTracers();
-    }
-
-    if (glow) {
-        visuals.PlayerGlow();
-    }
 
     if (showMenu) {
 
@@ -129,10 +108,10 @@ void RenderImGui()
 
             ImVec2 buttonSize(80, 0);
 
-            if (ImGui::Button("Aim", buttonSize))   activeTab = 0; ImGui::SameLine();
-            if (ImGui::Button("Visuals", buttonSize)) activeTab = 1; ImGui::SameLine();
-            if (ImGui::Button("Misc", buttonSize))    activeTab = 2; ImGui::SameLine();
-            if (ImGui::Button("Config", buttonSize))  activeTab = 3;
+            if (ImGui::Button("Aim", buttonSize))       activeTab = 0; ImGui::SameLine();
+            if (ImGui::Button("Visuals", buttonSize))   activeTab = 1; ImGui::SameLine();
+            if (ImGui::Button("Misc", buttonSize))      activeTab = 2; ImGui::SameLine();
+            if (ImGui::Button("Config", buttonSize))    activeTab = 3;
         }
 
         ImGui::Separator();
@@ -140,52 +119,52 @@ void RenderImGui()
 
         ImGui::BeginChild("Main Content", ImVec2(0, 0), true);
         switch (activeTab) {
-        case 0:
-            ImGui::Text("Aim");
-            ImGui::Separator();
+            case 0:
+                ImGui::Text("Aim");
+                ImGui::Separator();
 
-            break;
+                break;
 
-        case 1:
-            ImGui::Text("Visuals");
-            ImGui::Separator();
-            ImGui::Checkbox("ESP", &esp);
-            if (esp) {
-                ImGui::ColorEdit4("ESP Color", (float*)&espColor);
-                ImGui::SliderFloat("ESP Thickness", &espThickness, 1.0f, 5.0f);
-            }
-            ImGui::Separator();
+            case 1:
+                ImGui::Text("Visuals");
+                ImGui::Separator();
+                ImGui::Checkbox("ESP", &Config::esp);
+                if (Config::esp) {
+                    ImGui::ColorEdit4("ESP Color", (float*)&Config::espColor);
+                    ImGui::SliderFloat("ESP Thickness", &Config::espThickness, 1.0f, 5.0f);
+                }
+                ImGui::Separator();
 
-            ImGui::Checkbox("Glow", &glow);
-            if (glow) {
-                ImGui::ColorEdit4("Glow Color", (float*)&glowColor);
-            }
-            ImGui::Separator();
+                ImGui::Checkbox("Glow", &Config::glow);
+                if (Config::glow) {
+                    ImGui::ColorEdit4("Glow Color", (float*)&Config::glowColor);
+                }
+                ImGui::Separator();
 
-            ImGui::Checkbox("Tracers", &showTracers);
-            if (showTracers) {
-                ImGui::ColorEdit4("Tracers Color", (float*)&tracersColor);
-            }
-            ImGui::Separator();
+                ImGui::Checkbox("Tracers", &Config::showTracers);
+                if (Config::showTracers) {
+                    ImGui::ColorEdit4("Tracers Color", (float*)&Config::tracersColor);
+                }
+                ImGui::Separator();
 
-            ImGui::Checkbox("NameTags", &showNameTags);
-            if (showNameTags) {
-                ImGui::Checkbox("Health", &showHealth);
-            }
-            ImGui::Separator();
-            break;
+                ImGui::Checkbox("NameTags", &Config::showNametags);
+                if (Config::showNametags) {
+                    ImGui::Checkbox("Health", &Config::showHealth);
+                }
+                ImGui::Separator();
+                break;
 
-        case 2:
-            ImGui::Text("Misc");
-            ImGui::Separator();
+            case 2:
+                ImGui::Text("Misc");
+                ImGui::Separator();
 
-            break;
+                break;
 
-        case 3:
-            ImGui::Text("Config");
-            ImGui::Separator();
+            case 3:
+                ImGui::Text("Config");
+                ImGui::Separator();
 
-            break;
+                break;
         }
         ImGui::EndChild();
 
@@ -195,11 +174,4 @@ void RenderImGui()
     ImGui::Render();
     pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
     ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
-}
-
-void CleanupImGui()
-{
-    ImGui_ImplDX11_Shutdown();
-    ImGui_ImplWin32_Shutdown();
-    ImGui::DestroyContext();
 }

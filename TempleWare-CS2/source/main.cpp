@@ -1,7 +1,8 @@
 #include "includes.h"
-#include "./menu/menu.h"
-
+#include "templeware/templeware.h"
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
+TempleWare templeWare;
 
 Present oPresent;
 HWND window = NULL;
@@ -14,10 +15,6 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
 
     if (ImGui_ImplWin32_WndProcHandler(hWnd, uMsg, wParam, lParam)) {
         return true;
-    }
-
-    if (uMsg == WM_KEYDOWN && wParam == VK_END) {
-        showMenu = !showMenu;
     }
 
     return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
@@ -40,14 +37,14 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
             pDevice->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
             pBackBuffer->Release();
             oWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)WndProc);
-            InitImGui();
+            templeWare.init(window, pDevice, pContext, mainRenderTargetView);
             init = true;
         }
         else
             return oPresent(pSwapChain, SyncInterval, Flags);
     }
 
-    RenderImGui();
+    templeWare.renderer.menu.render();
 
     return oPresent(pSwapChain, SyncInterval, Flags);
 }
@@ -75,7 +72,6 @@ BOOL WINAPI DllMain(HMODULE hMod, DWORD dwReason, LPVOID lpReserved)
         CreateThread(nullptr, 0, MainThread, hMod, 0, nullptr);
         break;
     case DLL_PROCESS_DETACH:
-        CleanupImGui();
         kiero::shutdown();
         break;
     }
