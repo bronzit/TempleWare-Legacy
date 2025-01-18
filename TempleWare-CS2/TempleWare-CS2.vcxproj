@@ -156,11 +156,15 @@
     <ClCompile Include="external\kiero\minhook\src\hde\hde64.c" />
     <ClCompile Include="external\kiero\minhook\src\hook.c" />
     <ClCompile Include="external\kiero\minhook\src\trampoline.c" />
-    <ClCompile Include="source\features\visuals\visuals.cpp" />
-    <ClCompile Include="source\globals\globals.cpp" />
+    <ClCompile Include="source\cs2\datatypes\cutl\utlhash\utlhash.cpp" />
+    <ClCompile Include="source\cs2\datatypes\schema\ISchemaClass\ISchemaClass.cpp" />
+    <ClCompile Include="source\templeware\config\config.cpp" />
+    <ClCompile Include="source\templeware\memory\patternscan\patternscan.cpp" />
+    <ClCompile Include="source\templeware\players\players.cpp" />
+    <ClCompile Include="source\templeware\templeware.cpp" />
     <ClCompile Include="source\main.cpp" />
-    <ClCompile Include="source\math\math.cpp" />
-    <ClCompile Include="source\menu\menu.cpp" />
+    <ClCompile Include="source\templeware\menu\menu.cpp" />
+    <ClCompile Include="source\templeware\visuals\visuals.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="external\kiero\minhook\dll_resources\MinHook.def" />
@@ -178,6 +182,16 @@
     <ClInclude Include="external\imgui\imstb_textedit.h" />
     <ClInclude Include="external\imgui\imstb_truetype.h" />
     <ClInclude Include="external\json\json.hpp" />
+    <ClInclude Include="source\cs2\datatypes\cutl\utlhash\utlhash.h" />
+    <ClInclude Include="source\cs2\datatypes\schema\ISchemaClass\ISchemaClass.h" />
+    <ClInclude Include="source\templeware\config\config.h" />
+    <ClInclude Include="source\templeware\hooks\includeHooks.h" />
+    <ClInclude Include="source\templeware\memory\memorycommon.h" />
+    <ClInclude Include="source\templeware\memory\patternscan\patternscan.h" />
+    <ClInclude Include="source\templeware\memory\vfunc\vfunc.h" />
+    <ClInclude Include="source\templeware\players\players.h" />
+    <ClInclude Include="source\templeware\renderer\renderer.h" />
+    <ClInclude Include="source\templeware\templeware.h" />
     <ClInclude Include="source\features\visuals\visuals.h" />
     <ClInclude Include="source\globals\globals.h" />
     <ClInclude Include="source\offsets\offsets.h" />
@@ -191,8 +205,8 @@
     <ClInclude Include="external\kiero\minhook\src\hde\table32.h" />
     <ClInclude Include="external\kiero\minhook\src\hde\table64.h" />
     <ClInclude Include="external\kiero\minhook\src\trampoline.h" />
-    <ClInclude Include="source\math\math.h" />
-    <ClInclude Include="source\menu\menu.h" />
+    <ClInclude Include="source\templeware\menu\menu.h" />
+    <ClInclude Include="source\templeware\visuals\visuals.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
