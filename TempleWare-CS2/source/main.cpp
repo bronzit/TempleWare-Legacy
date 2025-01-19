@@ -1,5 +1,5 @@
 #include "includes.h"
-#include "templeware/templeware.h"
+#include "core/templeware.h"
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
 TempleWare templeWare;

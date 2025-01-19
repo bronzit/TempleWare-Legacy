@@ -1,8 +1,8 @@
 #pragma once
 #include <cstdint>
-#include "../../../../templeware/memory/vfunc/vfunc.h"
-#include "../../../../templeware/memory/patternscan/patternscan.h"
-#include "../../../../templeware/memory/memorycommon.h"
+#include "../../../../core/memory/vfunc/vfunc.h"
+#include "../../../../core/memory/patternscan/patternscan.h"
+#include "../../../../core/memory/memorycommon.h"
 #include "../../cutl/utlhash/utlhash.h"
 
 #define SCHEMASYSTEM_TYPE_SCOPES_OFFSET 0x188
