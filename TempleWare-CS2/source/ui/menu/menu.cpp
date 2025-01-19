@@ -119,56 +119,37 @@ void Menu::render() {
 
         ImGui::BeginChild("Main Content", ImVec2(0, 0), true);
         switch (activeTab) {
-            case 0:
-                ImGui::Text("Aim");
-                ImGui::Separator();
+        case 0:
+            ImGui::Text("Aim");
+            ImGui::Separator();
 
-                break;
+            break;
 
-            case 1:
-                ImGui::Text("Visuals");
-                ImGui::Separator();
-                ImGui::Checkbox("ESP", &Config::esp);
-                if (Config::esp) {
-                    ImGui::ColorEdit4("ESP Color", (float*)&Config::espColor);
-                    ImGui::SliderFloat("ESP Thickness", &Config::espThickness, 1.0f, 5.0f);
-                }
-                ImGui::Separator();
+        case 1:
+            ImGui::Text("Visuals");
+            ImGui::Separator();
 
-                ImGui::Checkbox("Glow", &Config::glow);
-                if (Config::glow) {
-                    ImGui::ColorEdit4("Glow Color", (float*)&Config::glowColor);
-                }
-                ImGui::Separator();
+            if (ImGui::CollapsingHeader("Visuals")) {
 
-                ImGui::Checkbox("Tracers", &Config::showTracers);
-                if (Config::showTracers) {
-                    ImGui::ColorEdit4("Tracers Color", (float*)&Config::tracersColor);
-                }
-                ImGui::Separator();
-
-                ImGui::Checkbox("NameTags", &Config::showNametags);
-                if (Config::showNametags) {
-                    ImGui::Checkbox("Health", &Config::showHealth);
-                }
                 ImGui::Separator();
                 break;
 
-            case 2:
-                ImGui::Text("Misc");
-                ImGui::Separator();
+        case 2:
+            ImGui::Text("Misc");
+            ImGui::Separator();
 
-                break;
+            break;
 
-            case 3:
-                ImGui::Text("Config");
-                ImGui::Separator();
+        case 3:
+            ImGui::Text("Config");
+            ImGui::Separator();
 
-                break;
+            break;
+            }
+            ImGui::EndChild();
+
+            ImGui::End();
         }
-        ImGui::EndChild();
-
-        ImGui::End();
     }
 
     ImGui::Render();

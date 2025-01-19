@@ -190,6 +190,7 @@
     <ClInclude Include="source\core\memory\patternscan\patternscan.h" />
     <ClInclude Include="source\core\memory\vfunc\vfunc.h" />
     <ClInclude Include="source\features\players\players.h" />
+    <ClInclude Include="source\ui\menu\menu.h" />
     <ClInclude Include="source\ui\renderer\renderer.h" />
     <ClInclude Include="source\core\templeware.h" />
     <ClInclude Include="source\features\visuals\visuals.h" />
