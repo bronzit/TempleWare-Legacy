@@ -1,5 +1,5 @@
 #pragma once
-#include "../ui/renderer/renderer.h"
+#include "renderer/renderer.h"
 #include "config/config.h"
 
 class TempleWare {

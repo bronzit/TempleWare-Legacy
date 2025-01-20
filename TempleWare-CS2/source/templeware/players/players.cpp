@@ -1,5 +1,5 @@
 #include "players.h"
-#include "../../game/datatypes/schema/ISchemaClass/ISchemaClass.h"
+#include "../../cs2/datatypes/schema/ISchemaClass/ISchemaClass.h"
 
 void onAddEntityHook(__int64 CGameEntitySystem, void* entityPointer, int entityHandle) {
 	if (!entityPointer || !CGameEntitySystem || !entityHandle) {

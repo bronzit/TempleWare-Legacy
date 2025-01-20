@@ -1,5 +1,5 @@
 #include "menu.h"
-#include "../../core/config/config.h"
+#include "../config/config.h"
 
 void ApplyImGuiTheme() {
     ImGui::StyleColorsDark();

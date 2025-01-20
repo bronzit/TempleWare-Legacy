@@ -1,5 +1,5 @@
 #pragma once
-#include "../../core/hooks/includeHooks.h"
+#include "../hooks/includeHooks.h"
 
 typedef void(__fastcall* onAddEntity)(__int64 CGameEntitySystem, void* entityPointer, int entityHandle);
 extern onAddEntity oOnAddEntity;
