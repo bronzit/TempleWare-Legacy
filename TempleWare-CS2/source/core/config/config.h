@@ -7,4 +7,13 @@
 // (FYI THIS IS A HORRID SOLUTION BUT FUNCTIONS) 
 
 namespace Config {
+	extern bool esp;
+	extern bool glow;
+	extern bool showHealth;
+	extern bool showNametags;
+	extern bool showTracers;
+	extern float espThickness;
+	extern ImVec4 espColor;
+	extern ImVec4 glowColor;
+	extern ImVec4 tracersColor;
 }
