@@ -4,5 +4,5 @@
 #include <string>
 
 namespace M {
-	static uintptr_t patternScan(const char* module, const char* pattern);
+	uintptr_t patternScan(const std::string& module, const std::string& pattern);
 }

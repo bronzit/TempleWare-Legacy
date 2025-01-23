@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../../templeware/memory/memorycommon.h"
+#include "../../../../templeware/utils/memory/memorycommon.h"
 #include <cstddef>
 #include <cstdint>
 #include <limits>

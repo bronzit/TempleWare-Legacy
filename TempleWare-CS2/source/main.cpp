@@ -1,3 +1,6 @@
+#define TEMPLEDEBUG
+#include "debug/debug.h"
+
 #include "includes.h"
 #include "templeware/templeware.h"
 extern LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -20,7 +23,6 @@ LRESULT __stdcall WndProc(const HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPar
     return CallWindowProc(oWndProc, hWnd, uMsg, wParam, lParam);
 }
 
-
 bool init = false;
 HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT Flags)
 {
@@ -37,15 +39,32 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
             pDevice->CreateRenderTargetView(pBackBuffer, NULL, &mainRenderTargetView);
             pBackBuffer->Release();
             oWndProc = (WNDPROC)SetWindowLongPtr(window, GWLP_WNDPROC, (LONG_PTR)WndProc);
+#ifdef TEMPLEDEBUG
+            initDebug();
+#endif
             templeWare.init(window, pDevice, pContext, mainRenderTargetView);
             init = true;
         }
         else
             return oPresent(pSwapChain, SyncInterval, Flags);
     }
+    ImGui_ImplDX11_NewFrame();
+    ImGui_ImplWin32_NewFrame();
+    ImGui::NewFrame();
+
+    if (GetAsyncKeyState(VK_END) & 1) {
+        templeWare.renderer.menu.toggleMenu();
+    }
 
     templeWare.renderer.menu.render();
 
+    if (Config::esp) {
+        templeWare.renderer.visuals.esp();
+    }
+
+    ImGui::Render();
+    pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
+    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
     return oPresent(pSwapChain, SyncInterval, Flags);
 }
 

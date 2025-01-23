@@ -7,21 +7,14 @@
 
 
 class Menu {
-private:
-	HWND* window;
-	ID3D11Device* pDevice;
-	ID3D11DeviceContext* pContext;
-	ID3D11RenderTargetView* mainRenderTargetView;
-
 public:
 	Menu();
 
-	// Don't call init in the constructor of the class.
 	void init(HWND& window, ID3D11Device* pDevice, ID3D11DeviceContext* pContext, ID3D11RenderTargetView* mainRenderTargetView);
 	void render();
 
+	void toggleMenu();
 private:
-	int activeTab;
-
 	bool showMenu;
+	int activeTab;
 };

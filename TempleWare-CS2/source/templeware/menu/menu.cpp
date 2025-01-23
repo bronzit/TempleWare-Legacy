@@ -1,6 +1,8 @@
 #include "menu.h"
 #include "../config/config.h"
 
+#include <iostream>
+
 void ApplyImGuiTheme() {
     ImGui::StyleColorsDark();
 
@@ -43,11 +45,6 @@ void ApplyImGuiTheme() {
 }
 
 Menu::Menu() {
-    mainRenderTargetView = nullptr;
-    pContext = nullptr;
-    pDevice = nullptr;
-    window = nullptr;
-
     activeTab = 0;
     showMenu = true;
 }
@@ -63,24 +60,11 @@ void Menu::init(HWND& window, ID3D11Device* pDevice, ID3D11DeviceContext* pConte
 
     io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\arial.ttf", 16.0f);
 
-    this->window = &window;
-    this->pDevice = pDevice;
-    this->pContext = pContext;
-    this->mainRenderTargetView = mainRenderTargetView;
+    std::cout << "initialized menu\n";
 }
 
 void Menu::render() {
-    ImGui_ImplDX11_NewFrame();
-    ImGui_ImplWin32_NewFrame();
-    ImGui::NewFrame();
-    ImGuiIO& io = ImGui::GetIO();
-
-    io.MouseDrawCursor = showMenu;
-    io.WantCaptureKeyboard = showMenu;
-    io.WantCaptureMouse = showMenu;
-
     if (showMenu) {
-
         ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse |
             ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoTitleBar;
 
@@ -90,7 +74,6 @@ void Menu::render() {
         ImGui::Begin("TempleWare | Internal", nullptr, window_flags);
 
         {
-
             float windowWidth = ImGui::GetWindowWidth();
             float leftTextWidth = ImGui::CalcTextSize("TempleWare - Internal").x;
             float rightTextWidth = ImGui::CalcTextSize("templecheats.xyz").x;
@@ -170,8 +153,8 @@ void Menu::render() {
 
         ImGui::End();
     }
+}
 
-    ImGui::Render();
-    pContext->OMSetRenderTargets(1, &mainRenderTargetView, NULL);
-    ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+void Menu::toggleMenu() {
+    showMenu = !showMenu;
 }
