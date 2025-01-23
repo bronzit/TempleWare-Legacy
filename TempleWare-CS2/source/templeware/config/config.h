@@ -8,12 +8,10 @@
 
 namespace Config {
 	extern bool esp;
-	extern bool glow;
 	extern bool showHealth;
-	extern bool showNametags;
-	extern bool showTracers;
+	extern bool teamCheck;
+	extern bool espFill;
 	extern float espThickness;
+	extern float espFillOpacity;
 	extern ImVec4 espColor;
-	extern ImVec4 glowColor;
-	extern ImVec4 tracersColor;
 }

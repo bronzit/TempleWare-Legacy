@@ -11,6 +11,9 @@ public:
 	Vector_t getEyePosition() const;
 
 	uintptr_t getAddress() const;
+	int getHealth() const;
+	int getTeam() const;
+	Vector_t getViewOffset() const;
 private:
 	uintptr_t address;
 };

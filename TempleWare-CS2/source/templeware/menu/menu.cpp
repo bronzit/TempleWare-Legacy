@@ -102,52 +102,43 @@ void Menu::render() {
 
         ImGui::BeginChild("Main Content", ImVec2(0, 0), true);
         switch (activeTab) {
-            case 0:
-                ImGui::Text("Aim");
-                ImGui::Separator();
+        case 0:
+            ImGui::Text("Aim");
+            ImGui::Separator();
 
-                break;
+            break;
 
-            case 1:
-                ImGui::Text("Visuals");
-                ImGui::Separator();
-                ImGui::Checkbox("ESP", &Config::esp);
+        case 1:
+            ImGui::Text("Visuals");
+            ImGui::Separator();
+            if (ImGui::CollapsingHeader("ESP")) {
+                ImGui::Checkbox("Toggle", &Config::esp);
                 if (Config::esp) {
-                    ImGui::ColorEdit4("ESP Color", (float*)&Config::espColor);
-                    ImGui::SliderFloat("ESP Thickness", &Config::espThickness, 1.0f, 5.0f);
-                }
-                ImGui::Separator();
-
-                ImGui::Checkbox("Glow", &Config::glow);
-                if (Config::glow) {
-                    ImGui::ColorEdit4("Glow Color", (float*)&Config::glowColor);
-                }
-                ImGui::Separator();
-
-                ImGui::Checkbox("Tracers", &Config::showTracers);
-                if (Config::showTracers) {
-                    ImGui::ColorEdit4("Tracers Color", (float*)&Config::tracersColor);
-                }
-                ImGui::Separator();
-
-                ImGui::Checkbox("NameTags", &Config::showNametags);
-                if (Config::showNametags) {
+                    ImGui::ColorEdit4("Color", (float*)&Config::espColor);
+                    ImGui::SliderFloat("Thickness", &Config::espThickness, 1.0f, 5.0f);
+                    ImGui::Checkbox("TeamCheck", &Config::teamCheck);
+                    ImGui::Checkbox("BoxFill", &Config::espFill);
+                    if (Config::espFill) {
+                        ImGui::SliderFloat("FillOpacity", &Config::espFillOpacity, 0.0f, 1.0f);
+                    }
                     ImGui::Checkbox("Health", &Config::showHealth);
                 }
-                ImGui::Separator();
-                break;
+            }
+            ImGui::Separator();
 
-            case 2:
-                ImGui::Text("Misc");
-                ImGui::Separator();
+            break;
 
-                break;
+        case 2:
+            ImGui::Text("Misc");
+            ImGui::Separator();
 
-            case 3:
-                ImGui::Text("Config");
-                ImGui::Separator();
+            break;
 
-                break;
+        case 3:
+            ImGui::Text("Config");
+            ImGui::Separator();
+
+            break;
         }
         ImGui::EndChild();
 
