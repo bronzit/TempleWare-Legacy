@@ -1,11 +1,14 @@
 #include "patternscan.h"
+
+#include "../../module/module.h"
+
 #include <Windows.h>
 #include <vector>
 #include <string>
 #include <iostream>
 #include <Psapi.h>
 
-static std::vector<std::pair<uint8_t, bool>> PatternToBytes(const std::string& pattern) {
+std::vector<std::pair<uint8_t, bool>> PatternToBytes(const std::string& pattern) {
     std::vector<std::pair<uint8_t, bool>> patternBytes;
     const char* start = pattern.c_str();
     const char* end = start + pattern.size();
@@ -25,13 +28,15 @@ static std::vector<std::pair<uint8_t, bool>> PatternToBytes(const std::string& p
     return patternBytes;
 }
 
-static uintptr_t M::patternScan(const char* module, const char* pattern) {
-    MODULEINFO moduleInfo;
-    HMODULE hModule = GetModuleHandleA(module);
+uintptr_t M::patternScan(const std::string& module, const std::string& pattern) {
+    uintptr_t baseAddress = modules.getModule(module);
+    HMODULE hModule = reinterpret_cast<HMODULE>(baseAddress);
+
     if (!hModule) return 0;
 
+    MODULEINFO moduleInfo;
     GetModuleInformation(GetCurrentProcess(), hModule, &moduleInfo, sizeof(MODULEINFO));
-    uintptr_t baseAddress = reinterpret_cast<uintptr_t>(moduleInfo.lpBaseOfDll);
+
     size_t moduleSize = moduleInfo.SizeOfImage;
 
     std::vector<std::pair<uint8_t, bool>> patternBytes = PatternToBytes(pattern);
