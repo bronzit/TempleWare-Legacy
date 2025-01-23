@@ -1,4 +1,3 @@
-#define TEMPLEDEBUG
 #include "debug/debug.h"
 
 #include "includes.h"
