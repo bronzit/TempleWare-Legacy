@@ -17,7 +17,6 @@ void Visuals::esp() {
     for (const auto& pawn : Players::pawns) {
         ImDrawList* drawList = ImGui::GetBackgroundDrawList();
 
-
         Vector_t bottomPos = pawn.getPosition();
         Vector_t viewOffset = pawn.getViewOffset();
         Vector_t topPos = bottomPos + Vector_t(0, 0, viewOffset.z);
@@ -30,8 +29,12 @@ void Visuals::esp() {
             float boxX = tPosScreen.x - (boxWidth / 2.0f);
             float boxY = tPosScreen.y;
 
-            int localTeam = Players::getLocalPawn().getTeam();
-            if (!Config::teamCheck || pawn.getTeam() != localTeam) {
+            C_CSPlayerPawn localPawn = Players::getLocalPawn();
+            bool isLocalPlayer = (pawn.getAddress() == localPawn.getAddress());
+            bool isEnemy = (pawn.getTeam() != localPawn.getTeam());
+
+            if (!isLocalPlayer && (!Config::teamCheck || isEnemy)) {
+
                 ImVec4 espColorWithAlpha = Config::espColor;
                 espColorWithAlpha.w = Config::espFillOpacity;
                 ImU32 boxColor = ImGui::ColorConvertFloat4ToU32(Config::espColor);
