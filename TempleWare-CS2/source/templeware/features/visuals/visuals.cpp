@@ -1,13 +1,14 @@
 #include "visuals.h"
-#include "../players/players.h"
-#include "../utils/memory/patternscan/patternscan.h"
-#include "../utils/memory/gaa/gaa.h"
-#include "../../../external/imgui/imgui.h"
-#include "../utils/math/math.h"
+#include "../../players/players.h"
+#include "../../utils/memory/patternscan/patternscan.h"
+#include "../../utils/memory/gaa/gaa.h"
+#include "../../../../external/imgui/imgui.h"
+#include "../../utils/math/math.h"
 
 #include <algorithm>
 #include <iostream>
-#include "../config/config.h"
+#include "../../config/config.h"
+
 
 void Visuals::init() {
     viewMatrix.viewMatrix = (viewmatrix_t*)M::getAbsoluteAddress(M::patternScan("client", "48 8D 0D ? ? ? ? 48 C1 E0 06"), 3, 0);
