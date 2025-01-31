@@ -163,6 +163,7 @@
     <ClCompile Include="source\debug\debug.cpp" />
     <ClCompile Include="source\templeware\config\config.cpp" />
     <ClCompile Include="source\templeware\hooks\hooks.cpp" />
+    <ClCompile Include="source\templeware\menu\hud.cpp" />
     <ClCompile Include="source\templeware\utils\math\math.cpp" />
     <ClCompile Include="source\templeware\utils\math\vector\vector.cpp" />
     <ClCompile Include="source\templeware\utils\math\viewmatrix\viewmatrix.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="source\templeware\config\config.h" />
     <ClInclude Include="source\templeware\hooks\hooks.h" />
     <ClInclude Include="source\templeware\hooks\includeHooks.h" />
+    <ClInclude Include="source\templeware\menu\hud.h" />
     <ClInclude Include="source\templeware\offsets\offsets.h" />
     <ClInclude Include="source\templeware\utils\math\math.h" />
     <ClInclude Include="source\templeware\utils\math\vector\vector.h" />
