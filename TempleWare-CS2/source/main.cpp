@@ -56,6 +56,7 @@ HRESULT __stdcall hkPresent(IDXGISwapChain* pSwapChain, UINT SyncInterval, UINT 
     }
 
     templeWare.renderer.menu.render();
+    templeWare.renderer.hud.render();
 
     if (Config::esp) {
         templeWare.renderer.visuals.esp();

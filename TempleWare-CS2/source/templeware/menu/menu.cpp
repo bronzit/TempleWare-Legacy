@@ -2,6 +2,8 @@
 #include "../config/config.h"
 
 #include <iostream>
+#include <vector>
+#include "../config/configmanager.h"
 
 void ApplyImGuiTheme() {
     ImGui::StyleColorsDark();
@@ -102,52 +104,81 @@ void Menu::render() {
 
         ImGui::BeginChild("Main Content", ImVec2(0, 0), true);
         switch (activeTab) {
-            case 0:
-                ImGui::Text("Aim");
-                ImGui::Separator();
+        case 0:
+            ImGui::Text("Aim");
+            ImGui::Separator();
 
-                break;
+            break;
 
-            case 1:
-                ImGui::Text("Visuals");
-                ImGui::Separator();
-                ImGui::Checkbox("ESP", &Config::esp);
+        case 1:
+            ImGui::Text("Visuals");
+            ImGui::Separator();
+            if (ImGui::CollapsingHeader("ESP")) {
+                ImGui::Checkbox("Toggle", &Config::esp);
                 if (Config::esp) {
-                    ImGui::ColorEdit4("ESP Color", (float*)&Config::espColor);
-                    ImGui::SliderFloat("ESP Thickness", &Config::espThickness, 1.0f, 5.0f);
-                }
-                ImGui::Separator();
-
-                ImGui::Checkbox("Glow", &Config::glow);
-                if (Config::glow) {
-                    ImGui::ColorEdit4("Glow Color", (float*)&Config::glowColor);
-                }
-                ImGui::Separator();
-
-                ImGui::Checkbox("Tracers", &Config::showTracers);
-                if (Config::showTracers) {
-                    ImGui::ColorEdit4("Tracers Color", (float*)&Config::tracersColor);
-                }
-                ImGui::Separator();
-
-                ImGui::Checkbox("NameTags", &Config::showNametags);
-                if (Config::showNametags) {
+                    ImGui::ColorEdit4("Color", (float*)&Config::espColor);
+                    ImGui::SliderFloat("Thickness", &Config::espThickness, 1.0f, 5.0f);
+                    ImGui::Checkbox("TeamCheck", &Config::teamCheck);
+                    ImGui::Checkbox("BoxFill", &Config::espFill);
+                    if (Config::espFill) {
+                        ImGui::SliderFloat("FillOpacity", &Config::espFillOpacity, 0.0f, 1.0f);
+                    }
                     ImGui::Checkbox("Health", &Config::showHealth);
                 }
-                ImGui::Separator();
-                break;
+            }
+            ImGui::Separator();
 
-            case 2:
-                ImGui::Text("Misc");
-                ImGui::Separator();
+            break;
 
-                break;
+        case 2:
+            ImGui::Text("Misc");
+            ImGui::Separator();
 
-            case 3:
-                ImGui::Text("Config");
-                ImGui::Separator();
+            break;
 
-                break;
+        case 3:
+            ImGui::Text("Config");
+            ImGui::Separator();
+            static char configName[128] = "";
+            static std::vector<std::string> configList = internal_config::ConfigManager::ListConfigs();
+            static int selectedConfigIndex = -1;
+
+            ImGui::InputText("Config Name", configName, IM_ARRAYSIZE(configName));
+
+            if (ImGui::Button("Refresh Config List"))
+            {
+                configList = internal_config::ConfigManager::ListConfigs();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Load Config"))
+            {
+                internal_config::ConfigManager::Load(configName);
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Save Config"))
+            {
+                internal_config::ConfigManager::Save(configName);
+                configList = internal_config::ConfigManager::ListConfigs();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Delete Config"))
+            {
+                internal_config::ConfigManager::Remove(configName);
+                configList = internal_config::ConfigManager::ListConfigs();
+            }
+
+            ImGui::Separator();
+            ImGui::Text("Saved Configs:");
+            for (int i = 0; i < static_cast<int>(configList.size()); i++)
+            {
+                if (ImGui::Selectable(configList[i].c_str(), selectedConfigIndex == i))
+                {
+                    selectedConfigIndex = i;
+
+                    strncpy_s(configName, sizeof(configName), configList[i].c_str(), _TRUNCATE);
+                }
+            }
+            break;
         }
         ImGui::EndChild();
 
