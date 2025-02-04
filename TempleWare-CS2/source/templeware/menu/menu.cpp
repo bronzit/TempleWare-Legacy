@@ -2,6 +2,8 @@
 #include "../config/config.h"
 
 #include <iostream>
+#include <vector>
+#include "../config/configmanager.h"
 
 void ApplyImGuiTheme() {
     ImGui::StyleColorsDark();
@@ -137,7 +139,45 @@ void Menu::render() {
         case 3:
             ImGui::Text("Config");
             ImGui::Separator();
+            static char configName[128] = "";
+            static std::vector<std::string> configList = internal_config::ConfigManager::ListConfigs();
+            static int selectedConfigIndex = -1;
 
+            ImGui::InputText("Config Name", configName, IM_ARRAYSIZE(configName));
+
+            if (ImGui::Button("Refresh Config List"))
+            {
+                configList = internal_config::ConfigManager::ListConfigs();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Load Config"))
+            {
+                internal_config::ConfigManager::Load(configName);
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Save Config"))
+            {
+                internal_config::ConfigManager::Save(configName);
+                configList = internal_config::ConfigManager::ListConfigs();
+            }
+            ImGui::SameLine();
+            if (ImGui::Button("Delete Config"))
+            {
+                internal_config::ConfigManager::Remove(configName);
+                configList = internal_config::ConfigManager::ListConfigs();
+            }
+
+            ImGui::Separator();
+            ImGui::Text("Saved Configs:");
+            for (int i = 0; i < static_cast<int>(configList.size()); i++)
+            {
+                if (ImGui::Selectable(configList[i].c_str(), selectedConfigIndex == i))
+                {
+                    selectedConfigIndex = i;
+
+                    strncpy_s(configName, sizeof(configName), configList[i].c_str(), _TRUNCATE);
+                }
+            }
             break;
         }
         ImGui::EndChild();
