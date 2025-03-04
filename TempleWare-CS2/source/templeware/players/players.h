@@ -5,10 +5,4 @@
 
 #include <cstdint>
 #include <vector>
-
-namespace Players {
-	extern std::vector<CCSPlayerController> controllers;
-	extern std::vector<C_CSPlayerPawn> pawns;
-
-	C_CSPlayerPawn getLocalPawn();
-}
+//@not used anymore

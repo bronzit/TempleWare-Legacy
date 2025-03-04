@@ -4,6 +4,7 @@
 #include "../../../../templeware/utils/memory/patternscan/patternscan.h"
 #include "../../../../templeware/utils/memory/memorycommon.h"
 #include "../../cutl/utlhash/utlhash.h"
+#include "..\..\..\..\templeware\utils\math\utlvector\utlvector.h"
 
 #define SCHEMASYSTEM_TYPE_SCOPES_OFFSET 0x188
 #define SCHEMASYSTEMTYPESCOPE_OFF1 0x3F8
@@ -144,3 +145,14 @@ public:
 };
 
 void GetSchemaClassInfo(uintptr_t address, SchemaClassInfoData_t** pReturn);
+
+class ISchemaSystem
+{
+public:
+	CSchemaSystemTypeScope* FindTypeScopeForModule(const char* m_module_name);
+
+private:
+	MEM_PAD(SCHEMASYSTEM_TYPE_SCOPES_OFFSET); // 0x0000
+public:
+	CUtlVector<CSchemaSystemTypeScope*> vecTypeScopes; // SCHEMASYSTEM_TYPE_SCOPES_OFFSET
+};
