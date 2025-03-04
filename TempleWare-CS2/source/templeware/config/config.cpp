@@ -11,7 +11,11 @@ namespace Config {
 	bool showHealth = false;
 	bool teamCheck = false;
 	bool espFill = false;
+	bool Night = false;
+
 	float espThickness = 1.0f;
 	float espFillOpacity = 0.5f;
 	ImVec4 espColor = ImVec4(1, 0, 0, 1);
+	ImVec4 NightColor = ImVec4(0.1, 0.1, 0.1, 1);
+
 }

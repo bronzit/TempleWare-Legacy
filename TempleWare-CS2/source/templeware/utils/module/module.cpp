@@ -5,6 +5,7 @@ Module::Module(uintptr_t moduleAddress, const std::string &moduleName) : address
 
 void Modules::init() {
 	registerModule("client.dll", "client");
+	registerModule("scenesystem.dll", "scenesystem");
 	registerModule("tier0.dll", "client");
 }
 

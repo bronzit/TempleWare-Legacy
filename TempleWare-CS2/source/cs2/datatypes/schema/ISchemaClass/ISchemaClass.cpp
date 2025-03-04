@@ -47,3 +47,9 @@ CSchemaClassBinding* CSchemaSystemTypeScope::FindRawClassBinding(const char* szN
 void GetSchemaClassInfo(uintptr_t address, SchemaClassInfoData_t** pReturn) {
 	return M::vfunc<void, 38U>(reinterpret_cast<void*>(address), pReturn);
 }
+
+CSchemaSystemTypeScope* ISchemaSystem::FindTypeScopeForModule(const char* m_module_name)
+{
+
+	return M::vfunc<CSchemaSystemTypeScope*, 13U>(this, m_module_name, nullptr);
+}
