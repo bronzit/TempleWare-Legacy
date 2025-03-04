@@ -133,7 +133,7 @@ void Menu::render() {
         case 2:
             ImGui::Text("Misc");
             ImGui::Separator();
-            ImGui::Checkbox("Night Mode", &Config::Night);
+            ImGui::Checkbox("NightMode", &Config::Night);
             if (Config::Night) 
                 ImGui::ColorEdit4("Color", (float*)&Config::NightColor);
 

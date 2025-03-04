@@ -2,6 +2,7 @@
 #include "../../../external/imgui/imgui.h"
 #include <ctime>
 #include <string>
+#include <sstream>
 
 Hud::Hud() {
 
@@ -9,14 +10,20 @@ Hud::Hud() {
 
 void Hud::render() {
 
+    // Time
     std::time_t now = std::time(nullptr);
     std::tm localTime;
     localtime_s(&localTime, &now);
     char timeBuffer[9];
     std::strftime(timeBuffer, sizeof(timeBuffer), "%H:%M:%S", &localTime);
 
-    std::string watermarkText = "TempleWare | ";
-    watermarkText += timeBuffer;
+    // FPS
+    float fps = ImGui::GetIO().Framerate;
+    std::ostringstream fpsStream;
+    fpsStream << static_cast<int>(fps) << " FPS";
+
+    // WaterMark
+    std::string watermarkText = "TempleWare | " + fpsStream.str() + " | " + timeBuffer;
 
     ImVec2 textSize = ImGui::CalcTextSize(watermarkText.c_str());
     float padding = 5.0f;
@@ -32,9 +39,7 @@ void Hud::render() {
     drawList->AddRectFilled(pos, ImVec2(pos.x + rectSize.x, pos.y + rectSize.y), bgColor);
 
     float lineThickness = 2.0f;
-
     drawList->AddLine(pos, ImVec2(pos.x, pos.y + rectSize.y), borderColor, lineThickness);
-
     drawList->AddLine(ImVec2(pos.x + rectSize.x, pos.y), ImVec2(pos.x + rectSize.x, pos.y + rectSize.y), borderColor, lineThickness);
 
     ImVec2 textPos = ImVec2(pos.x + padding, pos.y + padding);
