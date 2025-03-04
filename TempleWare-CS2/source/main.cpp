@@ -89,7 +89,25 @@ void init_console() {
         freopen_s(&f, "CONOUT$", "w", stdout);  // Redirect stdout to console
         freopen_s(&f, "CONOUT$", "w", stderr);  // Redirect stderr to console
         ::SetConsoleTitleW(L"TempleWare");
-        printf("Console allocated successfully!\n");
+
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+        printf(R"(___________                   .__         __      __                       
+\__    ___/___   _____ ______ |  |   ____/  \    /  \_____ _______   ____  
+  |    |_/ __ \ /     \\____ \|  | _/ __ \   \/\/   /\__  \\_  __ \_/ __ \ 
+  |    |\  ___/|  Y Y  \  |_> >  |_\  ___/\        /  / __ \|  | \/\  ___/ 
+  |____| \___  >__|_|  /   __/|____/\___  >\__/\  /  (____  /__|    \___  >
+             \/      \/|__|             \/      \/        \/            \/ 
+)");
+
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+
+        printf("[");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+        printf("+");
+        SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        printf("] Console allocated successfully!\n");
     }
 }
 DWORD WINAPI MainThread(LPVOID lpReserved)

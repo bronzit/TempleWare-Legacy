@@ -62,7 +62,13 @@ bool Schema::init(const char* ModuleName, int module_type)
 			dumped_data.emplace_back(hash_32_fnv1a_const(szFieldClassBuffer.Data()), pFields[j].nSingleInheritanceOffset);
 		}
 
-		printf("[schema] Dumped Class: %s fields: %i \n", pDeclaredClassInfo->szName, pDeclaredClassInfo->nFieldSize);
+		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+		printf("[Schema] ");
+
+		SetConsoleTextAttribute(hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+		printf("Dumped Class: %s fields: %i \n", pDeclaredClassInfo->szName, pDeclaredClassInfo->nFieldSize);
 	}
 
 	delete[] pElements;
