@@ -3,11 +3,6 @@
 #include "playerHook.h"
 
 #include <iostream>
-/*
-  // @READ ME: This should be storing Handles and not address pointers
-  // it s hould store C_BaseEntity Handle 
-  // which can later globally be used to grab its right instance 
-
 
 void onAddEntityHook(__int64 CGameEntitySystem, void* entityPointer, int entityHandle) {
 	if (!entityPointer || !CGameEntitySystem || !entityHandle) {
@@ -80,4 +75,4 @@ void onRemoveEntityHook(__int64 CGameEntitySystem, void* entityPointer, int enti
 }
 
 onAddEntity oOnAddEntity = nullptr;
-onRemoveEntity oOnRemoveEntity = nullptr;*/
+onRemoveEntity oOnRemoveEntity = nullptr;

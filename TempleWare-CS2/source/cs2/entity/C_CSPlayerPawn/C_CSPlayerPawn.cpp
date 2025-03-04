@@ -1,7 +1,6 @@
 #include "C_CSPlayerPawn.h"
 
 #include "../../../templeware/offsets/offsets.h"
-#include "../../../templeware/interfaces/interfaces.h"
 
 C_CSPlayerPawn::C_CSPlayerPawn(uintptr_t address) : address(address) {}
 
@@ -11,26 +10,6 @@ Vector_t C_CSPlayerPawn::getPosition() const {
 
 Vector_t C_CSPlayerPawn::getEyePosition() const {
 	return Vector_t();
-}
-
-C_CSWeaponBase* C_CSPlayerPawn::GetActiveWeapon() const {
-	if (!this)
-		return nullptr;
-
-	CCSPlayer_WeaponServices* weapon_services = this->GetWeaponServices();
-	if (weapon_services == nullptr)
-		return nullptr;
-
-	C_CSWeaponBase* active_weapon = I::GameEntity->Instance->Get<C_CSWeaponBase>(weapon_services->m_hActiveWeapon());
-	if (!active_weapon)
-		return nullptr;
-
-	return active_weapon;
-}
-
-CCSPlayer_WeaponServices* C_CSPlayerPawn::GetWeaponServices() const {
-	if (!address) return nullptr;
-	return reinterpret_cast<CCSPlayer_WeaponServices*>(address + 0x11A8);
 }
 
 uintptr_t C_CSPlayerPawn::getAddress() const {

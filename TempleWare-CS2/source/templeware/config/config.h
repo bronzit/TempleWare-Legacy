@@ -14,7 +14,4 @@ namespace Config {
 	extern float espThickness;
 	extern float espFillOpacity;
 	extern ImVec4 espColor;
-	extern bool Night;
-	extern ImVec4 NightColor;
-
 }

@@ -9,5 +9,4 @@ public:
 	bool WorldToScreen(const Vector_t& position, Vector_t& out) const;
 	
 	viewmatrix_t* viewMatrix;
-
 };

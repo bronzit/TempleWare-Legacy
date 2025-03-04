@@ -7,6 +7,6 @@
 class Renderer {
 public:
 	Menu menu;
-	Esp::Visuals visuals;
+	Visuals visuals;
 	Hud hud;
 };
