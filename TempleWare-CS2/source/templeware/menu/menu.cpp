@@ -132,11 +132,11 @@ void Menu::render() {
             if (ImGui::CollapsingHeader("Chams")) {
                 ImGui::Checkbox("Chams##ChamsCheckbox", &Config::enemyChams);
                 if (Config::enemyChams) {
-                    ImGui::ColorEdit4("Color##ChamsColor", (float*)&Config::colVisualChamsIgnoreZ);
+                    ImGui::ColorEdit4("Color##ChamsColor", (float*)&Config::colVisualChams);
                 }
                 ImGui::Checkbox("Chams-XQZ", &Config::enemyChamsInvisible);
                 if (Config::enemyChamsInvisible) {
-                    ImGui::ColorEdit4("Color-XQZ", (float*)&Config::colVisualChams);
+                    ImGui::ColorEdit4("Color-XQZ", (float*)&Config::colVisualChamsIgnoreZ);
                 }
             }
 
