@@ -14,6 +14,10 @@ namespace I
 	inline std::int64_t(__fastcall* CreateMaterial)(void*, void*, const char*, void*, unsigned int, unsigned int);
 	inline bool(__fastcall* LoadKeyValues)(CKeyValues3*, void*, const char*, const KV3ID_t*, const char*);
 
+	// Logging functions
+	inline void(__fastcall* ConMsg)(const char*, ...);
+	inline void(__fastcall* ConColorMsg)(const Color&, const char*, ...);
+
 	inline IEngineClient* EngineClient = nullptr;
 	inline IGameResourceService* GameEntity = nullptr;
 	class Interfaces {
