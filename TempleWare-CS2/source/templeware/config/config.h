@@ -14,7 +14,21 @@ namespace Config {
 	extern float espThickness;
 	extern float espFillOpacity;
 	extern ImVec4 espColor;
+	extern bool showNameTags;
 	extern bool Night;
 	extern ImVec4 NightColor;
+	extern bool enemyChamsInvisible;
+	extern bool enemyChams;
+	extern bool teamChams;
+	extern bool teamChamsInvisible;
+	extern ImVec4 colVisualChams;
+	extern ImVec4 colVisualChamsIgnoreZ;
+	extern ImVec4 teamcolVisualChamsIgnoreZ;
+	extern ImVec4 teamcolVisualChams;
+
+
+
+	extern bool Night;
+
 
 }
