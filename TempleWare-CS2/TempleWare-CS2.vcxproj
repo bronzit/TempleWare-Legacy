@@ -223,7 +223,6 @@
     <ClInclude Include="source\cs2\entity\C_Material\C_Material.h" />
     <ClInclude Include="source\cs2\entity\handle.h" />
     <ClInclude Include="source\templeware\features\chams\chams.h" />
-    <ClInclude Include="source\templeware\features\visuals\fov\fov.h" />
     <ClInclude Include="source\templeware\interfaces\CGameEntitySystem\CGameEntitySystem.h" />
     <ClInclude Include="source\templeware\interfaces\IEngineClient\IEngineClient.h" />
     <ClInclude Include="source\templeware\interfaces\interfaces.h" />
