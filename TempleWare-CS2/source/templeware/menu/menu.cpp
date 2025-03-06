@@ -142,7 +142,9 @@ void Menu::render() {
                 }
             }
 
-            if (ImGui::CollapsingHeader("World")) {
+            ImGui::Separator();
+
+            if (ImGui::CollapsingHeader("Player")) {
                 ImGui::Checkbox("Fov##FovCheckbox", &Config::fovEnabled);
                 if (Config::fovEnabled) { 
                     ImGui::SliderFloat("##FovSlider", &Config::fov, 20.0f, 180.0f, "%1.0f");
