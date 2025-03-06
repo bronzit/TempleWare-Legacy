@@ -5,6 +5,8 @@
 #include <vector>
 #include "../config/configmanager.h"
 
+#include "../utils/logging/log.h"
+
 void ApplyImGuiTheme() {
     ImGui::StyleColorsDark();
 
@@ -140,6 +142,13 @@ void Menu::render() {
                 }
             }
 
+            if (ImGui::CollapsingHeader("World")) {
+                ImGui::Checkbox("Fov##FovCheckbox", &Config::fovEnabled);
+                if (Config::fovEnabled) { 
+                    ImGui::SliderFloat("##FovSlider", &Config::fov, 20.0f, 180.0f, "%1.0f");
+                }
+            }
+
             ImGui::Separator();
 
             break;
@@ -150,7 +159,6 @@ void Menu::render() {
             ImGui::Checkbox("NightMode", &Config::Night);
             if (Config::Night)
                 ImGui::ColorEdit4("Color", (float*)&Config::NightColor);
-
             break;
 
         case 3:

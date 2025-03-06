@@ -170,6 +170,7 @@
     <ClCompile Include="source\cs2\entity\C_CSPlayerPawn\C_CSPlayerPawn.cpp" />
     <ClCompile Include="source\cs2\entity\C_CSWeaponBase\C_CSWeaponBase.cpp" />
     <ClCompile Include="source\templeware\features\chams\chams.cpp" />
+    <ClCompile Include="source\templeware\features\visuals\fov\fov.cpp" />
     <ClCompile Include="source\templeware\interfaces\CGameEntitySystem\CGameEntitySystem.cpp" />
     <ClCompile Include="source\templeware\interfaces\interfaces.cpp" />
     <ClCompile Include="source\debug\debug.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="source\templeware\features\world\world.cpp" />
     <ClCompile Include="source\templeware\hooks\hooks.cpp" />
     <ClCompile Include="source\templeware\menu\hud.cpp" />
+    <ClCompile Include="source\templeware\utils\logging\log.cpp" />
     <ClCompile Include="source\templeware\utils\math\math.cpp" />
     <ClCompile Include="source\templeware\utils\math\vector\vector.cpp" />
     <ClCompile Include="source\templeware\utils\math\viewmatrix\viewmatrix.cpp" />
@@ -221,6 +223,7 @@
     <ClInclude Include="source\cs2\entity\C_Material\C_Material.h" />
     <ClInclude Include="source\cs2\entity\handle.h" />
     <ClInclude Include="source\templeware\features\chams\chams.h" />
+    <ClInclude Include="source\templeware\features\visuals\fov\fov.h" />
     <ClInclude Include="source\templeware\interfaces\CGameEntitySystem\CGameEntitySystem.h" />
     <ClInclude Include="source\templeware\interfaces\IEngineClient\IEngineClient.h" />
     <ClInclude Include="source\templeware\interfaces\interfaces.h" />
@@ -233,6 +236,7 @@
     <ClInclude Include="source\templeware\offsets\offsets.h" />
     <ClInclude Include="source\templeware\renderer\icons.h" />
     <ClInclude Include="source\templeware\utils\fnv1a\fnv1a.h" />
+    <ClInclude Include="source\templeware\utils\logging\log.h" />
     <ClInclude Include="source\templeware\utils\math\math.h" />
     <ClInclude Include="source\templeware\utils\math\utlmemory\utlmemory.h" />
     <ClInclude Include="source\templeware\utils\math\utlstring\utlstring.h" />

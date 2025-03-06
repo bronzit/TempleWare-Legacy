@@ -26,7 +26,8 @@ namespace Config {
 	extern ImVec4 teamcolVisualChamsIgnoreZ;
 	extern ImVec4 teamcolVisualChams;
 
-
+	extern bool fovEnabled;
+	extern float fov;
 
 	extern bool Night;
 

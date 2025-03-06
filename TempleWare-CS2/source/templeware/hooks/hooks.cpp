@@ -1,14 +1,20 @@
 #include "hooks.h"
 #include <iostream>
+
 #include "../../../external/kiero/minhook/include/MinHook.h"
-#include "../utils/memory/patternscan/patternscan.h"
-#include "../players/hook/playerHook.h"
+
 #include "../../templeware/utils/memory/Interface/Interface.h"
+#include "../utils/memory/patternscan/patternscan.h"
+#include "../utils/memory/gaa/gaa.h"
+
+#include "../players/hook/playerHook.h"
 #include "../features/visuals/visuals.h"
 #include "../features/chams/chams.h"
+
 #include "../../cs2/datatypes/cutlbuffer/cutlbuffer.h"
 #include "../../cs2/datatypes/keyvalues/keyvalues.h"
 #include "../../cs2/entity/C_Material/C_Material.h"
+
 
 void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 {
@@ -31,6 +37,7 @@ void H::Hooks::init() {
 	UpdateWallsObject.Add((void*)M::patternScan("scenesystem", ("48 89 5C 24 10 48 89 6C 24 18 56 57 41 54 41 56 41 57 48 83 EC 40")), &hkUpdateSceneObject);
 	FrameStageNotify.Add((void*)M::patternScan("client", ("48 89 5C 24 ? 56 48 83 EC 30 8B 05 ? ? ? ?")), &hkFrameStageNotify);
 	DrawObject.Add((void*)M::patternScan("scenesystem", ("48 8B C4 48 89 50 10 53 41 55 41 56 48 81 EC ? ? ? ? 4D 63 F1")), &chams::hook);
+	GetRenderFov.Add((float*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? F3 0F 11 45 00 48 8B 5C 24 40"), 1), &hkGetRenderFov);
 
 	MH_EnableHook(MH_ALL_HOOKS);
 }

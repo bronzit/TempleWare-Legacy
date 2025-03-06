@@ -78,6 +78,10 @@ namespace internal_config
             j["espFill"] = Config::espFill;
             j["espThickness"] = Config::espThickness;
             j["espFillOpacity"] = Config::espFillOpacity;
+
+            j["fovEnabled"] = Config::fovEnabled;
+            j["fov"] = Config::fov;
+
             j["espColor"] = {
                 Config::espColor.x,
                 Config::espColor.y,
@@ -150,6 +154,9 @@ namespace internal_config
             Config::espFill = j.value("espFill", false);
             Config::espThickness = j.value("espThickness", 1.0f);
             Config::espFillOpacity = j.value("espFillOpacity", 0.5f);
+
+            Config::fovEnabled = j.value("fovEnabled", false);
+            Config::fov = j.value("fov", 90.0f);
 
             if (j.contains("espColor") && j["espColor"].is_array() && j["espColor"].size() == 4)
             {
