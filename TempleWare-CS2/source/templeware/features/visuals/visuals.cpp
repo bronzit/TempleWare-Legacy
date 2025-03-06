@@ -18,7 +18,6 @@ void Visuals::init() {
     viewMatrix.viewMatrix = (viewmatrix_t*)M::getAbsoluteAddress(M::patternScan("client", "48 8D 0D ? ? ? ? 48 C1 E0 06"), 3, 0);
 }
 
-
 void Esp::cache()
 {
     if (!I::EngineClient->valid())

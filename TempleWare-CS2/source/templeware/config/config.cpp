@@ -22,10 +22,13 @@ namespace Config {
 	ImVec4 teamcolVisualChamsIgnoreZ = ImVec4(1, 0, 0, 1);
 	ImVec4 teamcolVisualChams = ImVec4(1, 0, 0, 1);
 
-
 	float espThickness = 1.0f;
 	float espFillOpacity = 0.5f;
 	ImVec4 espColor = ImVec4(1, 0, 0, 1);
+
+	bool fovEnabled = false;
+	float fov = 90.0f;
+
 	ImVec4 NightColor = ImVec4(0.1, 0.1, 0.1, 1);
 
 }
