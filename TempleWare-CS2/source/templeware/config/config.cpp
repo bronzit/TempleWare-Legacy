@@ -18,6 +18,9 @@ namespace Config {
 	bool teamChamsInvisible = false;
 	bool showNameTags = false;
 
+	bool enemyGlow = false;
+	ImVec4 enemyGlowColor = ImVec4(1, 1, 1, 1);
+
 	bool armChams = false;
 	bool viewmodelChams = false;
 	ImVec4 colViewmodelChams = ImVec4(1, 0, 0, 1);
@@ -37,4 +40,8 @@ namespace Config {
 
 	ImVec4 NightColor = ImVec4(0.1, 0.1, 0.1, 1);
 
+	bool aimbot = 0;
+	float aimbot_fov = 0;
+	bool rcs = 0;
+	bool fov_circle = 0;
 }

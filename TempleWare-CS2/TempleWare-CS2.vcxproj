@@ -169,6 +169,7 @@
     <ClCompile Include="source\cs2\entity\CCSPlayerController\CCSPlayerController.cpp" />
     <ClCompile Include="source\cs2\entity\C_CSPlayerPawn\C_CSPlayerPawn.cpp" />
     <ClCompile Include="source\cs2\entity\C_CSWeaponBase\C_CSWeaponBase.cpp" />
+    <ClCompile Include="source\templeware\features\aim\aim.cpp" />
     <ClCompile Include="source\templeware\features\chams\chams.cpp" />
     <ClCompile Include="source\templeware\features\visuals\fov\fov.cpp" />
     <ClCompile Include="source\templeware\interfaces\CGameEntitySystem\CGameEntitySystem.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="source\cs2\entity\C_EntityInstance\C_EntityInstance.h" />
     <ClInclude Include="source\cs2\entity\C_Material\C_Material.h" />
     <ClInclude Include="source\cs2\entity\handle.h" />
+    <ClInclude Include="source\templeware\features\aim\aim.h" />
     <ClInclude Include="source\templeware\features\chams\chams.h" />
     <ClInclude Include="source\templeware\interfaces\CGameEntitySystem\CGameEntitySystem.h" />
     <ClInclude Include="source\templeware\interfaces\IEngineClient\IEngineClient.h" />

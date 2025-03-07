@@ -114,6 +114,11 @@ namespace internal_config
                 Config::colViewmodelChams.w
             };
 
+            j["aimbot"] = Config::aimbot;
+            j["aimbot_fov"] = Config::aimbot_fov;
+            j["rcs"] = Config::rcs;
+            j["fov_circle"] = Config::fov_circle;
+
             j["enemyChamsInvisible"] = Config::enemyChamsInvisible;
             j["enemyChams"] = Config::enemyChams;
             j["teamChams"] = Config::teamChams;
@@ -198,6 +203,11 @@ namespace internal_config
             Config::enemyChams = j.value("enemyChams", false);
             Config::teamChams = j.value("teamChams", false);
             Config::teamChamsInvisible = j.value("teamChamsInvisible", false);
+
+            Config::fov_circle = j.value("fov_circle", false);
+            Config::aimbot = j.value("aimbot", false);
+            Config::rcs = j.value("rcs", false);
+            Config::aimbot_fov = j.value("aimbot_fov", 0.f);
 
             Config::armChams = j.value("armChams", false);
             Config::viewmodelChams = j.value("viewmodelChams", false);

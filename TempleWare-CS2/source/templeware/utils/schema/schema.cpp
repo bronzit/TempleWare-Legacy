@@ -57,9 +57,9 @@ bool Schema::init(const char* ModuleName, int module_type)
 		for (auto j = 0; j < pDeclaredClassInfo->nFieldSize; j++)
 		{
 			SchemaClassFieldData_t* pFields = pDeclaredClassInfo->pFields;
-			String_t<MAX_PATH> szFieldClassBuffer("%s->%s", pClassBinding->szBinaryName, pFields[j].szName);
-
-			dumped_data.emplace_back(hash_32_fnv1a_const(szFieldClassBuffer.Data()), pFields[j].nSingleInheritanceOffset);
+			std::string szFieldClassBuffer = std::string(pDeclaredClassInfo->szName) + "->" + std::string(pFields[j].szName);
+			
+			dumped_data.emplace_back(hash_32_fnv1a_const(szFieldClassBuffer.c_str()), pFields[j].nSingleInheritanceOffset);
 		}
 
 		HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

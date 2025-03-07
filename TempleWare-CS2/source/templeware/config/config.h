@@ -21,6 +21,10 @@ namespace Config {
 	extern bool enemyChams;
 	extern bool teamChams;
 	extern bool teamChamsInvisible;
+
+	extern bool enemyGlow;
+	extern ImVec4 enemyGlowColor;
+
 	extern ImVec4 colVisualChams;
 	extern ImVec4 colVisualChamsIgnoreZ;
 	extern ImVec4 teamcolVisualChamsIgnoreZ;
@@ -36,5 +40,8 @@ namespace Config {
 
 	extern bool Night;
 
-
+	extern bool aimbot;
+	extern float aimbot_fov;
+	extern bool rcs;
+	extern bool fov_circle;
 }

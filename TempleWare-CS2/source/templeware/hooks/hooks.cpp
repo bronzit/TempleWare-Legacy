@@ -15,14 +15,19 @@
 #include "../../cs2/datatypes/keyvalues/keyvalues.h"
 #include "../../cs2/entity/C_Material/C_Material.h"
 
+#include "../config/config.h"
+#include "../interfaces/interfaces.h"
+#include "../features/aim/aim.h"
 
 void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 {
 	FrameStageNotify.GetOriginal()(a1, stage);
 
 	// frame_render_stage | 9
-	if (stage == 9) {
+	if (stage == 9 && oGetLocalPlayer(0)) {
 		Esp::cache();
+
+		Aimbot();
 	}
 }
 
@@ -42,7 +47,7 @@ void H::Hooks::init() {
 
 	UpdateWallsObject.Add((void*)M::patternScan("scenesystem", ("48 89 5C 24 10 48 89 6C 24 18 56 57 41 54 41 56 41 57 48 83 EC 40")), &hkUpdateSceneObject);
 	FrameStageNotify.Add((void*)M::patternScan("client", ("48 89 5C 24 ? 56 48 83 EC 30 8B 05 ? ? ? ?")), &hkFrameStageNotify);
-	DrawObject.Add((void*)M::patternScan("scenesystem", ("48 8B C4 48 89 50 10 53 41 55 41 56 48 81 EC ? ? ? ? 4D 63 F1")), &chams::hook);
+	DrawArray.Add((void*)M::patternScan("scenesystem", ("48 8B C4 48 89 50 10 53 41 55 41 56 48 81 EC ? ? ? ? 4D 63 F1")), &chams::hook);
 	GetRenderFov.Add((void*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? F3 0F 11 45 00 48 8B 5C 24 40"), 1), &hkGetRenderFov);
 	LevelInit.Add((void*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? C6 83 ? ? ? ? ? C6 83"), 1), &hkLevelInit);
 

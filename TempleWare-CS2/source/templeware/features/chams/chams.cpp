@@ -146,7 +146,7 @@ CMaterial2* GetMaterial(int type, bool invisible) { return invisible ? resourceM
 
 void __fastcall chams::hook(void* a1, void* a2, CMeshData* pMeshScene, int nMeshCount, void* pSceneView, void* pSceneLayer, void* pUnk, void* pUnk2)
 {
-    static auto original = H::DrawObject.GetOriginal();
+    static auto original = H::DrawArray.GetOriginal();
 
     if (!I::EngineClient->valid())
         return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
@@ -210,7 +210,6 @@ void __fastcall chams::hook(void* a1, void* a2, CMeshData* pMeshScene, int nMesh
         pMeshScene->color.g = static_cast<uint8_t>(Config::colVisualChamsIgnoreZ.y * 255.0f);
         pMeshScene->color.b = static_cast<uint8_t>(Config::colVisualChamsIgnoreZ.z * 255.0f);
         pMeshScene->color.a = static_cast<uint8_t>(Config::colVisualChamsIgnoreZ.w * 255.0f);
-
 
         original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
     }

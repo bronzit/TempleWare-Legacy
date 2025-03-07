@@ -110,6 +110,10 @@ void Menu::render() {
             ImGui::Text("Aim");
             ImGui::Separator();
 
+            ImGui::Checkbox("Enable Aimbot", &Config::aimbot);
+            ImGui::SliderFloat("FOV", &Config::aimbot_fov, 0.f, 90.f);
+            ImGui::Checkbox("FOV Circle", &Config::fov_circle);
+            ImGui::Checkbox("RCS", &Config::rcs);
             break;
 
         case 1:

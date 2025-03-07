@@ -4,8 +4,9 @@
 float H::hkGetRenderFov(void* rcx) {
 	if (Config::fovEnabled) {
 		float flTargetFov = Config::fov;
-		return flTargetFov;
-	}
-	
-	return H::GetRenderFov.GetOriginal()(rcx);
+		g_flActiveFov = flTargetFov;
+	}else
+		g_flActiveFov = H::GetRenderFov.GetOriginal()(rcx);
+
+	return g_flActiveFov;
 }

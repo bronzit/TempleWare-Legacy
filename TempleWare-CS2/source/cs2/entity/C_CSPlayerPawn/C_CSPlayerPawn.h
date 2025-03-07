@@ -21,7 +21,7 @@ public:
 
 	uintptr_t getAddress() const;
 	int getHealth() const;
-	int getTeam() const;
+	uint8_t getTeam() const;
 	Vector_t getViewOffset() const;
 private:
 	uintptr_t address;

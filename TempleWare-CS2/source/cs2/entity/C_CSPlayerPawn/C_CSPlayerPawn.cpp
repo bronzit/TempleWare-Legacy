@@ -6,7 +6,7 @@
 C_CSPlayerPawn::C_CSPlayerPawn(uintptr_t address) : address(address) {}
 
 Vector_t C_CSPlayerPawn::getPosition() const {
-	return *(Vector_t*)(address + Offset::C_BasePlayerPawn::m_vOldOrigin);
+	return *(Vector_t*)(address + SchemaFinder::Get(hash_32_fnv1a_const("C_BasePlayerPawn->m_vOldOrigin")));
 }
 
 Vector_t C_CSPlayerPawn::getEyePosition() const {
@@ -30,7 +30,7 @@ C_CSWeaponBase* C_CSPlayerPawn::GetActiveWeapon() const {
 
 CCSPlayer_WeaponServices* C_CSPlayerPawn::GetWeaponServices() const {
 	if (!address) return nullptr;
-	return reinterpret_cast<CCSPlayer_WeaponServices*>(address + 0x11A8);
+	return reinterpret_cast<CCSPlayer_WeaponServices*>((uintptr_t)this + SchemaFinder::Get(hash_32_fnv1a_const("C_CSPlayerPawn->m_pWeaponServices")));
 }
 
 uintptr_t C_CSPlayerPawn::getAddress() const {
@@ -38,16 +38,13 @@ uintptr_t C_CSPlayerPawn::getAddress() const {
 }
 
 int C_CSPlayerPawn::getHealth() const {
-	if (!address) return 0;
-	return *reinterpret_cast<int*>(address + Offset::C_BasePlayerPawn::m_iHealth);
+	return *reinterpret_cast<int*>((uintptr_t)this + SchemaFinder::Get(hash_32_fnv1a_const("C_BaseEntity->m_iHealth")));
 }
 
-int C_CSPlayerPawn::getTeam() const {
-	if (!address) return 0;
-	return *reinterpret_cast<int32_t*>(address + Offset::C_BasePlayerPawn::m_iTeamNum);
+uint8_t C_CSPlayerPawn::getTeam() const {
+	return *reinterpret_cast<uint8_t*>((uintptr_t)this + SchemaFinder::Get(hash_32_fnv1a_const("C_BaseEntity->m_iTeamNum")));
 }
 
 Vector_t C_CSPlayerPawn::getViewOffset() const {
-	if (!address) return Vector_t();
-	return *reinterpret_cast<Vector_t*>(address + Offset::C_BasePlayerPawn::m_vecViewOffset);
+	return *reinterpret_cast<Vector_t*>((uintptr_t)this + SchemaFinder::Get(hash_32_fnv1a_const("C_BaseModelEntity->m_vecViewOffset")));
 }
