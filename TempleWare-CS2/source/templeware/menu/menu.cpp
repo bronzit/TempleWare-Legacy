@@ -167,6 +167,8 @@ void Menu::render() {
             ImGui::Separator();
 
             if (ImGui::CollapsingHeader("Player")) {
+                ImGui::Checkbox("Antiflash##antiflashcheckbox", &Config::antiflash);
+
                 ImGui::Checkbox("Fov##FovCheckbox", &Config::fovEnabled);
                 if (Config::fovEnabled) {
                     ImGui::SliderFloat("##FovSlider", &Config::fov, 20.0f, 160.0f, "%1.0f");

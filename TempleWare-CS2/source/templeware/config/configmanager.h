@@ -116,6 +116,7 @@ namespace internal_config
 
             j["aimbot"] = Config::aimbot;
             j["aimbot_fov"] = Config::aimbot_fov;
+            j["antiflash"] = Config::antiflash;
             j["rcs"] = Config::rcs;
             j["fov_circle"] = Config::fov_circle;
 
@@ -216,6 +217,8 @@ namespace internal_config
             Config::aimbot = j.value("aimbot", false);
             Config::rcs = j.value("rcs", false);
             Config::aimbot_fov = j.value("aimbot_fov", 0.f);
+
+            Config::antiflash = j.value("antiflash", false);
 
             Config::armChams = j.value("armChams", false);
             Config::viewmodelChams = j.value("viewmodelChams", false);

@@ -39,6 +39,8 @@ namespace Config {
 	bool fovEnabled = false;
 	float fov = 90.0f;
 
+	bool antiflash = false;
+
 	ImVec4 NightColor = ImVec4(0.1, 0.1, 0.1, 1);
 
 	bool aimbot = 0;

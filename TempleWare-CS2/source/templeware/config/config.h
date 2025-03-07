@@ -38,6 +38,8 @@ namespace Config {
 	extern bool fovEnabled;
 	extern float fov;
 
+	extern bool antiflash;
+
 	extern bool Night;
 
 	extern bool aimbot;

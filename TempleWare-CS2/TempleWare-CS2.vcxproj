@@ -171,6 +171,7 @@
     <ClCompile Include="source\cs2\entity\C_CSWeaponBase\C_CSWeaponBase.cpp" />
     <ClCompile Include="source\templeware\features\aim\aim.cpp" />
     <ClCompile Include="source\templeware\features\chams\chams.cpp" />
+    <ClCompile Include="source\templeware\features\visuals\antiflash\antiflash.cpp" />
     <ClCompile Include="source\templeware\features\visuals\fov\fov.cpp" />
     <ClCompile Include="source\templeware\interfaces\CGameEntitySystem\CGameEntitySystem.cpp" />
     <ClCompile Include="source\templeware\interfaces\interfaces.cpp" />
