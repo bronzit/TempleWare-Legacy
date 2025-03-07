@@ -2,8 +2,10 @@
 #include "../../../config/config.h"
 
 float H::hkGetRenderFov(void* rcx) {
-	if (Config::fovEnabled)
-		return Config::fov;
+	if (Config::fovEnabled) {
+		float flTargetFov = Config::fov;
+		return flTargetFov;
+	}
 	
 	return H::GetRenderFov.GetOriginal()(rcx);
 }

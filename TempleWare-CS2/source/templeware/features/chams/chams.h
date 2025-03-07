@@ -17,7 +17,9 @@ enum ChamsType {
 enum ChamsEntity : std::int32_t {
 	INVALID = 0,
 	ENEMY,
-	TEAM
+	TEAM,
+	VIEWMODEL,
+	HANDS
 };
 
 enum MaterialType {

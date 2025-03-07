@@ -12,6 +12,7 @@ class CMeshData;
 namespace H {
 	void* __fastcall hkUpdateSceneObject(C_AggregateSceneObject* object, void* unk);
 	void __fastcall hkFrameStageNotify(void* a1, int stage);
+	void* __fastcall hkLevelInit(void* pClientModeShared, const char* szNewMap);
 	void __fastcall hkChamsObject(void* pAnimatableSceneObjectDesc, void* pDx11, CMeshData* arrMeshDraw, int nDataCount, void* pSceneView, void* pSceneLayer, void* pUnk, void* pUnk2);
 	float hkGetRenderFov(void* rcx);
 
@@ -19,6 +20,7 @@ namespace H {
 	inline CInlineHookObj<decltype(&hkFrameStageNotify)> FrameStageNotify = { };
 	inline CInlineHookObj<decltype(&hkUpdateSceneObject)> UpdateWallsObject = { };
 	inline CInlineHookObj<decltype(&hkGetRenderFov)> GetRenderFov = { };
+	inline CInlineHookObj<decltype(&hkLevelInit)> LevelInit = { };
 	// inline hooks
 	inline int  oGetWeaponData;
 	inline void* (__fastcall* ogGetBaseEntity)(void*, int);

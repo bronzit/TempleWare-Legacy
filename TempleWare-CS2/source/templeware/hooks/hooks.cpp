@@ -18,14 +18,20 @@
 
 void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 {
-	const auto og = FrameStageNotify.GetOriginal();
-
 	FrameStageNotify.GetOriginal()(a1, stage);
 
 	// frame_render_stage | 9
 	if (stage == 9) {
 		Esp::cache();
 	}
+}
+
+void* __fastcall H::hkLevelInit(void* pClientModeShared, const char* szNewMap) {
+	static void* g_pPVS = (void*)M::getAbsoluteAddress(M::patternScan("engine2", "48 8D 0D ? ? ? ? 33 D2 FF 50"), 0x3);
+
+	M::vfunc<void*, 6U, void>(g_pPVS, false);
+
+	return LevelInit.GetOriginal()(pClientModeShared, szNewMap);
 }
 
 void H::Hooks::init() {
@@ -37,7 +43,8 @@ void H::Hooks::init() {
 	UpdateWallsObject.Add((void*)M::patternScan("scenesystem", ("48 89 5C 24 10 48 89 6C 24 18 56 57 41 54 41 56 41 57 48 83 EC 40")), &hkUpdateSceneObject);
 	FrameStageNotify.Add((void*)M::patternScan("client", ("48 89 5C 24 ? 56 48 83 EC 30 8B 05 ? ? ? ?")), &hkFrameStageNotify);
 	DrawObject.Add((void*)M::patternScan("scenesystem", ("48 8B C4 48 89 50 10 53 41 55 41 56 48 81 EC ? ? ? ? 4D 63 F1")), &chams::hook);
-	GetRenderFov.Add((float*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? F3 0F 11 45 00 48 8B 5C 24 40"), 1), &hkGetRenderFov);
+	GetRenderFov.Add((void*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? F3 0F 11 45 00 48 8B 5C 24 40"), 1), &hkGetRenderFov);
+	LevelInit.Add((void*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? C6 83 ? ? ? ? ? C6 83"), 1), &hkLevelInit);
 
 	MH_EnableHook(MH_ALL_HOOKS);
 }

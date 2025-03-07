@@ -24,6 +24,26 @@ public:
 		return hash_32_fnv1a_const(pClassInfo->szName) == hash_32_fnv1a_const("C_CSPlayerPawn");
 	}
 
+	bool IsViewmodelAttachment()
+	{
+		SchemaClassInfoData_t* pClassInfo;
+		dump_class_info(&pClassInfo);
+		if (pClassInfo == nullptr)
+			return false;
+
+		return hash_32_fnv1a_const(pClassInfo->szName) == hash_32_fnv1a_const("C_ViewmodelAttachmentModel");
+	}
+
+	bool IsViewmodel()
+	{
+		SchemaClassInfoData_t* pClassInfo;
+		dump_class_info(&pClassInfo);
+		if (pClassInfo == nullptr)
+			return false;
+
+		return hash_32_fnv1a_const(pClassInfo->szName) == hash_32_fnv1a_const("C_CSGOViewModel");
+	}
+
 	bool IsPlayerController()
 	{
 		SchemaClassInfoData_t* _class = nullptr;

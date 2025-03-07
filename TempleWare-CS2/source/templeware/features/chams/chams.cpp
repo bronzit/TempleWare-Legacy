@@ -11,8 +11,6 @@
 #include "../../../cs2/datatypes/keyvalues/keyvalues.h"
 #include "../../../cs2/datatypes/cutlbuffer/cutlbuffer.h"
 
-
-
 CStrongHandle<CMaterial2> chams::create(const char* name, const char szVmatBuffer[])
 {
     CKeyValues3* pKeyValues3 = nullptr;
@@ -121,6 +119,12 @@ ChamsEntity chams::GetTargetType(C_BaseEntity* render_ent) noexcept {
     if (!local)
         return ChamsEntity::INVALID;
 
+    if (render_ent->IsViewmodelAttachment())
+        return ChamsEntity::HANDS;
+
+    if (render_ent->IsViewmodel())
+        return ChamsEntity::VIEWMODEL;
+
     if (!render_ent->IsBasePlayer() && !render_ent->IsPlayerController())
         return ChamsEntity::INVALID;
 
@@ -138,49 +142,67 @@ ChamsEntity chams::GetTargetType(C_BaseEntity* render_ent) noexcept {
     return ChamsEntity::ENEMY;
 }
 
-CMaterial2* GetMaterial(int type, bool invisible) { return invisible ? resourceMaterials[FLAT].mat_invs : resourceMaterials[FLAT].mat; }
+CMaterial2* GetMaterial(int type, bool invisible) { return invisible ? resourceMaterials[type].mat_invs : resourceMaterials[type].mat; }
 
-void __fastcall chams::hook(void* a1, void* a2, CMeshData* pMeshScene, int MeshCount, void* pSceneView, void* pSceneLayer, void* pUnk, void* pUnk2)
+void __fastcall chams::hook(void* a1, void* a2, CMeshData* pMeshScene, int nMeshCount, void* pSceneView, void* pSceneLayer, void* pUnk, void* pUnk2)
 {
     static auto original = H::DrawObject.GetOriginal();
 
     if (!I::EngineClient->valid())
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
     auto local_player = H::oGetLocalPlayer(0);
     if (!local_player)
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
     if (!pMeshScene)
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
 
     if (!pMeshScene->pSceneAnimatableObject)
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
 
-    if (MeshCount < 1)
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+    if (nMeshCount < 1)
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
 
     CMeshData* render_data = pMeshScene;
     if (!render_data)
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
 
     if (!render_data->pSceneAnimatableObject)
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
 
     auto render_ent = render_data->pSceneAnimatableObject->Owner();
     if (!render_ent.valid())
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
 
     auto entity = I::GameEntity->Instance->Get(render_ent);
     if (!entity)
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
 
     const auto target = GetTargetType(entity);
 
+    if (target == ChamsEntity::VIEWMODEL && Config::viewmodelChams) {
+        pMeshScene->pMaterial = GetMaterial(NORMAL, false);
+        pMeshScene->color.r = static_cast<uint8_t>(Config::colViewmodelChams.x * 255.0f);
+        pMeshScene->color.g = static_cast<uint8_t>(Config::colViewmodelChams.y * 255.0f);
+        pMeshScene->color.b = static_cast<uint8_t>(Config::colViewmodelChams.z * 255.0f);
+        pMeshScene->color.a = static_cast<uint8_t>(Config::colViewmodelChams.w * 255.0f);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+    }
+
+    if (target == ChamsEntity::HANDS && Config::armChams) {
+        pMeshScene->pMaterial = GetMaterial(NORMAL, false);
+        pMeshScene->color.r = static_cast<uint8_t>(Config::colArmChams.x * 255.0f);
+        pMeshScene->color.g = static_cast<uint8_t>(Config::colArmChams.y * 255.0f);
+        pMeshScene->color.b = static_cast<uint8_t>(Config::colArmChams.z * 255.0f);
+        pMeshScene->color.a = static_cast<uint8_t>(Config::colArmChams.w * 255.0f);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+    }
+
     if (target != ENEMY)
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
 
     bool og = !Config::enemyChams && !Config::enemyChamsInvisible;
     if (og)
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
 
     if (Config::enemyChamsInvisible) {
         pMeshScene->pMaterial = GetMaterial(FLAT, true);
@@ -190,7 +212,7 @@ void __fastcall chams::hook(void* a1, void* a2, CMeshData* pMeshScene, int MeshC
         pMeshScene->color.a = static_cast<uint8_t>(Config::colVisualChamsIgnoreZ.w * 255.0f);
 
 
-        original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
     }
 
     if (Config::enemyChams) {
@@ -199,10 +221,10 @@ void __fastcall chams::hook(void* a1, void* a2, CMeshData* pMeshScene, int MeshC
         pMeshScene->color.g = static_cast<uint8_t>(Config::colVisualChams.y * 255.0f);
         pMeshScene->color.b = static_cast<uint8_t>(Config::colVisualChams.z * 255.0f);
         pMeshScene->color.a = static_cast<uint8_t>(Config::colVisualChams.w * 255.0f);
-        return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+        return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
     }
 
     // If we get here, neither chams type is enabled, so just render normally
-    return original(a1, a2, pMeshScene, MeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
+    return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
 
 }

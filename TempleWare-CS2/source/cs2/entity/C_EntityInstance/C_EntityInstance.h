@@ -68,7 +68,6 @@ public:
 
 		return CBaseHandle(identity->get_index(), identity->get_serial_number() - (identity->flags() & 1));
 	}
-	schema(bool, m_bVisibleinPVS, "CEntityInstance->m_bVisibleinPVS");
 
 	schema(CEntityIdentity*, m_pEntityIdentity, "CEntityInstance->m_pEntity");
 };

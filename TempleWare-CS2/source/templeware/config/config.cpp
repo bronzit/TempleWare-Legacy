@@ -17,6 +17,12 @@ namespace Config {
 	bool teamChams = false;
 	bool teamChamsInvisible = false;
 	bool showNameTags = false;
+
+	bool armChams = false;
+	bool viewmodelChams = false;
+	ImVec4 colViewmodelChams = ImVec4(1, 0, 0, 1);
+	ImVec4 colArmChams = ImVec4(1, 0, 0, 1);
+
 	ImVec4 colVisualChams = ImVec4(1, 0, 0, 1);
 	ImVec4 colVisualChamsIgnoreZ = ImVec4(1, 0, 0, 1);
 	ImVec4 teamcolVisualChamsIgnoreZ = ImVec4(1, 0, 0, 1);

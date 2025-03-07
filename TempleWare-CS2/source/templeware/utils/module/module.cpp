@@ -9,6 +9,7 @@ void Modules::init() {
 	registerModule("particles.dll", "particles");
 	registerModule("materialsystem2.dll", "materialsystem2");
 	registerModule("tier0.dll", "tier0");
+	registerModule("engine2.dll", "engine2");
 }
 
 // Completely acceptable solution because there simply just aren't that many modules :)

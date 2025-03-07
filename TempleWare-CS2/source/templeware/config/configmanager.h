@@ -97,6 +97,23 @@ namespace internal_config
                 Config::NightColor.w
             };
 
+            j["armChams"] = Config::armChams;
+            j["viewmodelChams"] = Config::viewmodelChams;
+
+            j["armChams_color"] = {
+                Config::colArmChams.x,
+                Config::colArmChams.y,
+                Config::colArmChams.z,
+                Config::colArmChams.w
+            };
+
+            j["viewmodelChams_color"] = {
+                Config::colViewmodelChams.x,
+                Config::colViewmodelChams.y,
+                Config::colViewmodelChams.z,
+                Config::colViewmodelChams.w
+            };
+
             j["enemyChamsInvisible"] = Config::enemyChamsInvisible;
             j["enemyChams"] = Config::enemyChams;
             j["teamChams"] = Config::teamChams;
@@ -181,6 +198,27 @@ namespace internal_config
             Config::enemyChams = j.value("enemyChams", false);
             Config::teamChams = j.value("teamChams", false);
             Config::teamChamsInvisible = j.value("teamChamsInvisible", false);
+
+            Config::armChams = j.value("armChams", false);
+            Config::viewmodelChams = j.value("viewmodelChams", false);
+
+            if (j.contains("colArmChams") && j["colArmChams"].is_array() && j["colArmChams"].size() == 4)
+            {
+                auto arr = j["colArmChams"];
+                Config::colArmChams.x = arr[0].get<float>();
+                Config::colArmChams.y = arr[1].get<float>();
+                Config::colArmChams.z = arr[2].get<float>();
+                Config::colArmChams.w = arr[3].get<float>();
+            }
+
+            if (j.contains("colViewmodelChams") && j["colViewmodelChams"].is_array() && j["colViewmodelChams"].size() == 4)
+            {
+                auto arr = j["colViewmodelChams"];
+                Config::colViewmodelChams.x = arr[0].get<float>();
+                Config::colViewmodelChams.y = arr[1].get<float>();
+                Config::colViewmodelChams.z = arr[2].get<float>();
+                Config::colViewmodelChams.w = arr[3].get<float>();
+            }
 
             if (j.contains("colVisualChams") && j["colVisualChams"].is_array() && j["colVisualChams"].size() == 4)
             {

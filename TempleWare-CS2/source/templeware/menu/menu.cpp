@@ -140,6 +140,14 @@ void Menu::render() {
                 if (Config::enemyChamsInvisible) {
                     ImGui::ColorEdit4("Color-XQZ##ChamsXQZColor", (float*)&Config::colVisualChamsIgnoreZ);
                 }
+                ImGui::Checkbox("Arm Chams", &Config::armChams);
+                if (Config::enemyChamsInvisible) {
+                    ImGui::ColorEdit4("Arm Chams##clr", (float*)&Config::colArmChams);
+                }
+                ImGui::Checkbox("Viewmodel Chams", &Config::viewmodelChams);
+                if (Config::enemyChamsInvisible) {
+                    ImGui::ColorEdit4("Viewmodel Chams##clr", (float*)&Config::colViewmodelChams);
+                }
             }
 
             ImGui::Separator();
@@ -147,7 +155,7 @@ void Menu::render() {
             if (ImGui::CollapsingHeader("Player")) {
                 ImGui::Checkbox("Fov##FovCheckbox", &Config::fovEnabled);
                 if (Config::fovEnabled) { 
-                    ImGui::SliderFloat("##FovSlider", &Config::fov, 20.0f, 180.0f, "%1.0f");
+                    ImGui::SliderFloat("##FovSlider", &Config::fov, 20.0f, 160.0f, "%1.0f");
                 }
             }
 
