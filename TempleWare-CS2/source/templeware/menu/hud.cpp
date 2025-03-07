@@ -12,11 +12,9 @@ Hud::Hud() {
 }
 
 float CalculateFovRadius(float fovDegrees, float screenWidth, float screenHeight, float gameVerticalFOV) {
-    // Horizontal FOV conversion to radians
     float aspectRatio = screenWidth / screenHeight;
     float fovRadians = fovDegrees * (DirectX::XM_PI / 180.0f);
 
-    // Calculate radius based on in-game vertical FOV and screen height
     float screenRadius = std::tan(fovRadians / 2.0f) * (screenHeight / 2.0f) / std::tan(gameVerticalFOV * (DirectX::XM_PI / 180.0f) / 2.0f);
 
     static float flScalingMultiplier = 2.5f;
@@ -24,9 +22,10 @@ float CalculateFovRadius(float fovDegrees, float screenWidth, float screenHeight
     return screenRadius * flScalingMultiplier;
 }
 
-void RenderFovCircle(ImDrawList* drawList, float fov, ImVec2 screenCenter, float screenWidth, float screenHeight, uint32_t color, float thickness) {
+void RenderFovCircle(ImDrawList* drawList, float fov, ImVec2 screenCenter, float screenWidth, float screenHeight, float thickness) {
     float radius = CalculateFovRadius(fov, screenWidth, screenHeight, H::g_flActiveFov);
-    drawList->AddCircle(screenCenter, radius, color, 100, thickness);  // 100 segments for smoothness
+    uint32_t color = ImGui::ColorConvertFloat4ToU32(Config::fovCircleColor);
+    drawList->AddCircle(screenCenter, radius, color, 100, thickness);
 }
 
 void Hud::render() {
@@ -69,6 +68,6 @@ void Hud::render() {
     if (Config::fov_circle) {
         ImVec2 Center = ImVec2(ImGui::GetIO().DisplaySize.x / 2.f, ImGui::GetIO().DisplaySize.y / 2.f);
 
-        RenderFovCircle(drawList, Config::aimbot_fov, Center, ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y, ImColor(255, 255, 255, 255), 1.f);
+        RenderFovCircle(drawList, Config::aimbot_fov, Center, ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y, 1.f);
     }
 }
