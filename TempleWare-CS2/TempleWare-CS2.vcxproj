@@ -178,6 +178,7 @@
     <ClCompile Include="source\templeware\config\config.cpp" />
     <ClCompile Include="source\templeware\features\world\world.cpp" />
     <ClCompile Include="source\templeware\hooks\hooks.cpp" />
+    <ClCompile Include="source\templeware\keybinds\keybinds.cpp" />
     <ClCompile Include="source\templeware\menu\hud.cpp" />
     <ClCompile Include="source\templeware\utils\logging\log.cpp" />
     <ClCompile Include="source\templeware\utils\math\math.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="source\templeware\config\configmanager.h" />
     <ClInclude Include="source\templeware\hooks\hooks.h" />
     <ClInclude Include="source\templeware\hooks\includeHooks.h" />
+    <ClInclude Include="source\templeware\keybinds\keybinds.h" />
     <ClInclude Include="source\templeware\menu\hud.h" />
     <ClInclude Include="source\templeware\offsets\offsets.h" />
     <ClInclude Include="source\templeware\renderer\icons.h" />

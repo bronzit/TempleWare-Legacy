@@ -5,6 +5,8 @@
 #include <vector>
 #include "../config/configmanager.h"
 
+#include "../keybinds/keybinds.h"
+
 #include "../utils/logging/log.h"
 
 void ApplyImGuiTheme() {
@@ -68,6 +70,7 @@ void Menu::init(HWND& window, ID3D11Device* pDevice, ID3D11DeviceContext* pConte
 }
 
 void Menu::render() {
+    keybind.pollInputs();
     if (showMenu) {
         ImGuiWindowFlags window_flags = ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoCollapse |
             ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoTitleBar;
@@ -109,7 +112,9 @@ void Menu::render() {
             ImGui::Text("Aim");
             ImGui::Separator();
 
-            ImGui::Checkbox("Aimbot", &Config::aimbot);
+            ImGui::Checkbox("Aimbot", &Config::aimbot); ImGui::SameLine();
+            keybind.menuButton(Config::aimbot);
+
             ImGui::SliderFloat("FOV", &Config::aimbot_fov, 0.f, 90.f);
             ImGui::Checkbox("DrawFOV", &Config::fov_circle);
             ImGui::Checkbox("RCS", &Config::rcs);

@@ -66,7 +66,7 @@ void Hud::render() {
     ImVec2 textPos = ImVec2(pos.x + padding, pos.y + padding);
     drawList->AddText(textPos, textColor, watermarkText.c_str());
 
-    if (Config::aimbot && Config::fov_circle) {
+    if (Config::fov_circle) {
         ImVec2 Center = ImVec2(ImGui::GetIO().DisplaySize.x / 2.f, ImGui::GetIO().DisplaySize.y / 2.f);
 
         RenderFovCircle(drawList, Config::aimbot_fov, Center, ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y, ImColor(255, 255, 255, 255), 1.f);
