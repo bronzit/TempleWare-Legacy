@@ -123,6 +123,7 @@ namespace internal_config
             j["enemyChams"] = Config::enemyChams;
             j["teamChams"] = Config::teamChams;
             j["teamChamsInvisible"] = Config::teamChamsInvisible;
+            j["chamsMaterial"] = Config::chamsMaterial;
             j["colVisualChams"] = {
                 Config::colVisualChams.x,
                 Config::colVisualChams.y,
@@ -203,6 +204,7 @@ namespace internal_config
             Config::enemyChams = j.value("enemyChams", false);
             Config::teamChams = j.value("teamChams", false);
             Config::teamChamsInvisible = j.value("teamChamsInvisible", false);
+            Config::chamsMaterial = j.value("chamsMaterial", 0);
 
             Config::fov_circle = j.value("fov_circle", false);
             Config::aimbot = j.value("aimbot", false);

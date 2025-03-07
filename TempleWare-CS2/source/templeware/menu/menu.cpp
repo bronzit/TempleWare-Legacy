@@ -92,7 +92,6 @@ void Menu::render() {
         ImGui::Spacing();
 
         {
-
             ImVec2 buttonSize(80, 0);
 
             if (ImGui::Button("Aim", buttonSize))       activeTab = 0; ImGui::SameLine();
@@ -128,7 +127,7 @@ void Menu::render() {
                 if (Config::espFill) {
                     ImGui::SliderFloat("FillOpacity", &Config::espFillOpacity, 0.0f, 1.0f);
                 }
-                ImGui::ColorEdit4("Color##BoxColor", (float*)&Config::espColor);              
+                ImGui::ColorEdit4("Color##BoxColor", (float*)&Config::espColor);
                 ImGui::Checkbox("TeamCheck", &Config::teamCheck);
                 ImGui::Checkbox("Health", &Config::showHealth);
                 ImGui::Checkbox("NameTags", &Config::showNameTags);
@@ -138,6 +137,8 @@ void Menu::render() {
 
             if (ImGui::CollapsingHeader("Chams")) {
                 ImGui::Checkbox("Chams##ChamsCheckbox", &Config::enemyChams);
+                const char* chamsMaterials[] = { "Flat", "Illuminate", "Glow" };
+                ImGui::Combo("Material", &Config::chamsMaterial, chamsMaterials, IM_ARRAYSIZE(chamsMaterials));
                 if (Config::enemyChams) {
                     ImGui::ColorEdit4("Color##ChamsColor", (float*)&Config::colVisualChams);
                 }
@@ -159,7 +160,7 @@ void Menu::render() {
 
             if (ImGui::CollapsingHeader("Player")) {
                 ImGui::Checkbox("Fov##FovCheckbox", &Config::fovEnabled);
-                if (Config::fovEnabled) { 
+                if (Config::fovEnabled) {
                     ImGui::SliderFloat("##FovSlider", &Config::fov, 20.0f, 160.0f, "%1.0f");
                 }
             }

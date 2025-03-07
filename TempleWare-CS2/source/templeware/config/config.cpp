@@ -11,15 +11,16 @@ namespace Config {
 	bool showHealth = false;
 	bool teamCheck = false;
 	bool espFill = false;
+	bool showNameTags = false;
+	
 	bool Night = false;
+	
 	bool enemyChamsInvisible = false;
 	bool enemyChams = false;
 	bool teamChams = false;
 	bool teamChamsInvisible = false;
-	bool showNameTags = false;
+	int chamsMaterial = 0;
 
-	bool enemyGlow = false;
-	ImVec4 enemyGlowColor = ImVec4(1, 1, 1, 1);
 
 	bool armChams = false;
 	bool viewmodelChams = false;

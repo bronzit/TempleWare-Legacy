@@ -10,7 +10,8 @@ class CMeshData;
 
 enum ChamsType {
 	FLAT,
-	NORMAL,
+	ILLUMINATE,
+	GLOW,
 	MAXCOUNT
 };
 
