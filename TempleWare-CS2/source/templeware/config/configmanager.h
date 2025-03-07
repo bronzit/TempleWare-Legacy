@@ -148,6 +148,12 @@ namespace internal_config
                 Config::teamcolVisualChams.z,
                 Config::teamcolVisualChams.w
             };
+            j["fovCircleColor"] = {
+                Config::fovCircleColor.x,
+                Config::fovCircleColor.y,
+                Config::fovCircleColor.z,
+                Config::fovCircleColor.w
+            };
 
             auto filePath = GetConfigPath(configName);
             std::ofstream ofs(filePath);
@@ -266,6 +272,14 @@ namespace internal_config
                 Config::teamcolVisualChams.y = arr[1].get<float>();
                 Config::teamcolVisualChams.z = arr[2].get<float>();
                 Config::teamcolVisualChams.w = arr[3].get<float>();
+            }
+
+            if (j.contains("fovCircleColor") && j["fovCircleColor"].is_array() && j["fovCircleColor"].size() == 4) {
+                auto arr = j["fovCircleColor"];
+                Config::fovCircleColor.x = arr[0].get<float>();
+                Config::fovCircleColor.y = arr[1].get<float>();
+                Config::fovCircleColor.z = arr[2].get<float>();
+                Config::fovCircleColor.w = arr[3].get<float>();
             }
 
             ifs.close();

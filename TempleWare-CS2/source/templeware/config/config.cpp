@@ -45,4 +45,5 @@ namespace Config {
 	float aimbot_fov = 0;
 	bool rcs = 0;
 	bool fov_circle = 0;
+	ImVec4 fovCircleColor = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
 }

@@ -112,6 +112,9 @@ void Menu::render() {
             ImGui::Checkbox("Aimbot", &Config::aimbot);
             ImGui::SliderFloat("FOV", &Config::aimbot_fov, 0.f, 90.f);
             ImGui::Checkbox("DrawFOV", &Config::fov_circle);
+            if (Config::fov_circle) {
+                ImGui::ColorEdit4("Color##FovColor", (float*)&Config::fovCircleColor);
+            }
             ImGui::Checkbox("RCS", &Config::rcs);
             ImGui::Separator();
             break;
