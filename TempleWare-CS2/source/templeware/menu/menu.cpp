@@ -144,13 +144,13 @@ void Menu::render() {
                 if (Config::enemyChamsInvisible) {
                     ImGui::ColorEdit4("Color-XQZ##ChamsXQZColor", (float*)&Config::colVisualChamsIgnoreZ);
                 }
-                ImGui::Checkbox("Arm Chams", &Config::armChams);
-                if (Config::enemyChamsInvisible) {
-                    ImGui::ColorEdit4("Arm Chams##clr", (float*)&Config::colArmChams);
+                ImGui::Checkbox("HandChams", &Config::armChams);
+                if (Config::armChams) {
+                    ImGui::ColorEdit4("Color##HandChamsColor", (float*)&Config::colArmChams);
                 }
-                ImGui::Checkbox("Viewmodel Chams", &Config::viewmodelChams);
-                if (Config::enemyChamsInvisible) {
-                    ImGui::ColorEdit4("Viewmodel Chams##clr", (float*)&Config::colViewmodelChams);
+                ImGui::Checkbox("ViewmodelChams", &Config::viewmodelChams);
+                if (Config::viewmodelChams) {
+                    ImGui::ColorEdit4("Color##ViewModelChamsColor", (float*)&Config::colViewmodelChams);
                 }
             }
 
