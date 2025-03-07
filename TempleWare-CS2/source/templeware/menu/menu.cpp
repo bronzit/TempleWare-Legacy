@@ -174,6 +174,7 @@ void Menu::render() {
             ImGui::Checkbox("NightMode", &Config::Night);
             if (Config::Night)
                 ImGui::ColorEdit4("Color", (float*)&Config::NightColor);
+            ImGui::Separator();
             break;
 
         case 3:
