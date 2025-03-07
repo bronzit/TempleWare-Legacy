@@ -168,12 +168,13 @@ void Visuals::esp() {
             !viewMatrix.WorldToScreen(headPos, headScreen))
             continue;
 
-        float boxHeight = feetScreen.y - headScreen.y;
+        float boxHeight = (feetScreen.y - headScreen.y) * 1.3f;
         float boxWidth = boxHeight / 2.0f;
 
         float centerX = (feetScreen.x + headScreen.x) / 2.0f;
         float boxX = centerX - (boxWidth / 2.0f);
-        float boxY = headScreen.y;
+
+        float boxY = headScreen.y - (boxHeight - (feetScreen.y - headScreen.y)) / 2.0f;
 
         ImVec4 espColorWithAlpha = Config::espColor;
         espColorWithAlpha.w = Config::espFillOpacity;
