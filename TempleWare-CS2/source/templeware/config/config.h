@@ -15,10 +15,10 @@ namespace Config {
 	extern float espFillOpacity;
 	extern ImVec4 espColor;
 	extern bool showNameTags;
-	
+
 	extern bool Night;
 	extern ImVec4 NightColor;
-	
+
 	extern bool enemyChamsInvisible;
 	extern bool enemyChams;
 	extern bool teamChams;

@@ -4,6 +4,9 @@
 #include "../../../templeware/hooks/hooks.h"
 #include "../../../templeware/config/config.h"
 
+#include <chrono>
+#include <Windows.h>
+
 // Literally the most autistic code ive ever written in my life
 // Please dont ever make me do this again
 
@@ -92,7 +95,7 @@ void Aimbot() {
 
             QAngle_t ang_punch_angle = *(QAngle_t*)((uintptr_t)lp + SchemaFinder::Get(hash_32_fnv1a_const("C_CSPlayerPawn->m_aimPunchAngle")));
 
-            if(Config::rcs)
+            if (Config::rcs)
                 angle -= ang_punch_angle * 2.f;
 
             angle.z = 0.f;
