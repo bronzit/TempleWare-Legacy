@@ -47,4 +47,7 @@ namespace Config {
 	extern bool rcs;
 	extern bool fov_circle;
 	extern ImVec4 fovCircleColor;
+	extern bool target_teammates;
+	extern float smoothness;
+	extern float delay_time;
 }
