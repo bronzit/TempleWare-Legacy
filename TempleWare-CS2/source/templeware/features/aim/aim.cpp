@@ -54,7 +54,7 @@ void Aimbot() {
     C_CSPlayerPawn* lp = H::oGetLocalPlayer(0);
     Vector_t lep = GetEntityEyePos(lp);
 
-    QAngle_t* viewangles = (QAngle_t*)(modules.getModule("client") + 0x1AAE880); // If aimbot stops working, then you should update this offset
+    QAngle_t* viewangles = (QAngle_t*)(modules.getModule("client") + 0x1A93300); // If aimbot stops working, then you should update this offset
 
     for (int i = 1; i <= nMaxHighestEntity; i++) {
         auto Entity = I::GameEntity->Instance->Get(i);
