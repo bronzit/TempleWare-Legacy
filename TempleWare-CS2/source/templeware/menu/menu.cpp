@@ -144,10 +144,6 @@ void Menu::render() {
             ImGui::SameLine();
             keybind.menuButton(Config::aimbot);
 
-            ImGui::Checkbox("Target Teammates", &Config::target_teammates);
-            ImGui::SliderFloat("Smoothness", &Config::smoothness, 1.0f, 20.0f, "%.1f");
-            ImGui::SliderFloat("Reaction Time", &Config::delay_time, 0.0f, 100.0f, "%.2fs");
-
             ImGui::SliderFloat("FOV", &Config::aimbot_fov, 0.f, 90.f);
             ImGui::Checkbox("Draw FOV Circle", &Config::fov_circle);
             if (Config::fov_circle) {

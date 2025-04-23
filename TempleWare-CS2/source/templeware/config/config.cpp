@@ -48,7 +48,4 @@ namespace Config {
 	bool rcs = 0;
 	bool fov_circle = 0;
 	ImVec4 fovCircleColor = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
-	bool Config::target_teammates = false;
-	float smoothness = 1.0f;
-	float delay_time = 0.15f;
 }
