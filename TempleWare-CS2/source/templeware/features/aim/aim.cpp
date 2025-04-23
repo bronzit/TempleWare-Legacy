@@ -49,12 +49,17 @@ void Aimbot() {
     if (!Config::aimbot)
         return;
 
+    static auto last_aim_time = std::chrono::steady_clock::now();
+    auto now = std::chrono::steady_clock::now();
+    if (std::chrono::duration<float>(now - last_aim_time).count() < Config::delay_time)
+        return;
+
     int nMaxHighestEntity = I::GameEntity->Instance->GetHighestEntityIndex();
 
     C_CSPlayerPawn* lp = H::oGetLocalPlayer(0);
     Vector_t lep = GetEntityEyePos(lp);
 
-    QAngle_t* viewangles = (QAngle_t*)(modules.getModule("client") + 0x1AAE880); // If aimbot stops working, then you should update this offset
+    QAngle_t* viewangles = (QAngle_t*)(modules.getModule("client") + 0x1A93300); // If aimbot stops working, then you should update this offset
 
     for (int i = 1; i <= nMaxHighestEntity; i++) {
         auto Entity = I::GameEntity->Instance->Get(i);
@@ -80,7 +85,7 @@ void Aimbot() {
             if (pawn->getHealth() < 1)
                 continue;
 
-            if (pawn->getTeam() == lp->getTeam())
+            if (!Config::target_teammates && pawn->getTeam() == lp->getTeam())
                 continue;
 
             Vector_t eye_pos = GetEntityEyePos(pawn);
@@ -100,6 +105,8 @@ void Aimbot() {
 
             angle.z = 0.f;
             angle = angle.Normalize();
+            QAngle_t delta = (angle - *viewangles).Normalize();
+            QAngle_t smoothed = *viewangles + delta * (1.0f / Config::smoothness);
             *viewangles = angle;
             break;
         }
