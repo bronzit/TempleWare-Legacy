@@ -10,7 +10,7 @@
   <a href="https://discord.gg/j6hTUB5GBx" style="text-decoration: none;">
     <img src="https://img.shields.io/badge/Discord-9B59B6?style=for-the-badge&logo=discord&logoColor=white">
   </a>
-  <img src="https://img.shields.io/badge/license-MIT-8E44AD?style=for-the-badge&logo=&logoColor=white">d
+  <img src="https://img.shields.io/badge/license-MIT-8E44AD?style=for-the-badge&logo=&logoColor=white">
   <img src="https://img.shields.io/badge/CS2-9B59B6?style=for-the-badge&logo=counter-strike&logoColor=white">
 </p>
 
