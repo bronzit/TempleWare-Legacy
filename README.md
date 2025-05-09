@@ -15,7 +15,7 @@
 </p>
 
 ---
-### TempleWare is an internal cheat for CS2, developed in C++.
+### TempleWare Legacy is a free C++-based internal cheat for Counter-Strike 2.
 ---
 
 ### How to Launch TempleWare
