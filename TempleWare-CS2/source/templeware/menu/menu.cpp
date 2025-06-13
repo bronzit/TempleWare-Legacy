@@ -144,6 +144,7 @@ void Menu::render() {
             ImGui::SameLine();
             keybind.menuButton(Config::aimbot);
 
+            ImGui::Checkbox("Team Check", &Config::team_check);
             ImGui::SliderFloat("FOV", &Config::aimbot_fov, 0.f, 90.f);
             ImGui::Checkbox("Draw FOV Circle", &Config::fov_circle);
             if (Config::fov_circle) {

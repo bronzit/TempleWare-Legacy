@@ -54,7 +54,7 @@ void Aimbot() {
     C_CSPlayerPawn* lp = H::oGetLocalPlayer(0);
     Vector_t lep = GetEntityEyePos(lp);
 
-    QAngle_t* viewangles = (QAngle_t*)(modules.getModule("client") + 0x1A93300); // If aimbot stops working, then you should update this offset
+    QAngle_t* viewangles = (QAngle_t*)(modules.getModule("client") + 0x1A75620); // If aimbot stops working, then you should update this offset
 
     for (int i = 1; i <= nMaxHighestEntity; i++) {
         auto Entity = I::GameEntity->Instance->Get(i);
@@ -80,7 +80,7 @@ void Aimbot() {
             if (pawn->getHealth() < 1)
                 continue;
 
-            if (pawn->getTeam() == lp->getTeam())
+            if (!Config::target_teammates && pawn->getTeam() == lp->getTeam())
                 continue;
 
             Vector_t eye_pos = GetEntityEyePos(pawn);
