@@ -80,7 +80,7 @@ void Aimbot() {
             if (pawn->getHealth() < 1)
                 continue;
 
-            if (!Config::target_teammates && pawn->getTeam() == lp->getTeam())
+            if (!Config::team_check && pawn->getTeam() == lp->getTeam())
                 continue;
 
             Vector_t eye_pos = GetEntityEyePos(pawn);
