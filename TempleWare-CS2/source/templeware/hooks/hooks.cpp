@@ -51,6 +51,9 @@ void H::Hooks::init() {
 	GetRenderFov.Add((void*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? F3 0F 11 45 00 48 8B 5C 24 40"), 1), &hkGetRenderFov);
 	LevelInit.Add((void*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? C6 83 ? ? ? ? ? C6 83"), 1), &hkLevelInit);
 	RenderFlashBangOverlay.Add((void*)M::patternScan("client", ("85 D2 0F 88 ? ? ? ? 55 56 41 55")), &hkRenderFlashbangOverlay);
+	DrawSmokeArray.Add((void*)M::patternScan("client", ("48 89 54 24 ? 55 41 55 48 8D AC 24")), &hkDrawSmokeArray);
+	DrawScopeOverlay.Add((void*)M::patternScan("client", ("4C 8B DC 53 56 57 48 83 EC")), &hkDrawScopeOverlay);
+	DrawLegs.Add((void*)M::patternScan("client", ("48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 55 41 54 41 55 41 56 41 57 48 8D AC 24 ? ? ? ? 48 81 EC ? ? ? ? 48 8B 01")), &hkDrawLegs);
 
 	MH_EnableHook(MH_ALL_HOOKS);
 }
