@@ -39,6 +39,16 @@ void* __fastcall H::hkLevelInit(void* pClientModeShared, const char* szNewMap) {
 	return LevelInit.GetOriginal()(pClientModeShared, szNewMap);
 }
 
+void* __fastcall H::hkDrawLegs(void* a1, void* a2, void* a3, void* a4, void* a5) {
+    if (Config::removelegs) return nullptr;
+    return DrawLegs.GetOriginal()(a1, a2, a3, a4, a5);
+}
+
+void __fastcall H::hkDrawScopeOverlay(void* a1, void* a2) {
+    if (Config::ScopeRemove) return;
+    return DrawScopeOverlay.GetOriginal()(a1, a2);
+}
+
 void H::Hooks::init() {
 
 	oGetWeaponData = *reinterpret_cast<int*>(M::patternScan("client", ("48 8B 81 ? ? ? ? 85 D2 78 ? 48 83 FA ? 73 ? F3 0F 10 84 90 ? ? ? ? C3 F3 0F 10 80 ? ? ? ? C3 CC CC CC CC")) + 0x3);
