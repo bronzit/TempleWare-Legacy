@@ -19,6 +19,10 @@ namespace Config {
 	extern bool Night;
 	extern ImVec4 NightColor;
 
+	extern bool ScopeRemove;
+
+	extern bool removelegs;
+
 	extern bool enemyChamsInvisible;
 	extern bool enemyChams;
 	extern bool teamChams;
