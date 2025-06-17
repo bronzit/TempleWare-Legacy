@@ -230,6 +230,8 @@ void Menu::render() {
             ImGui::Separator();
 
             ImGui::Checkbox("Anti Flash", &Config::antiflash);
+            ImGui::Checkbox("Remove Scope", &Config::ScopeRemove);
+            ImGui::Checkbox("Remove Legs", &Config::removelegs);
 
             ImGui::EndChild();
         }
