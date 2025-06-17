@@ -49,6 +49,11 @@ void __fastcall H::hkDrawScopeOverlay(void* a1, void* a2) {
     return DrawScopeOverlay.GetOriginal()(a1, a2);
 }
 
+void* __fastcall H::hkDrawSmokeArray(void* rcx, void* pSomePointer1, void* pSomePointer2, void* pSomePointer3, void* pSomePointer4, void* pSomePointer5) {
+    if (Config::SmokeRemove) return nullptr;
+    return DrawSmokeArray.GetOriginal()(rcx, pSomePointer1, pSomePointer2, pSomePointer3, pSomePointer4, pSomePointer5);
+}
+
 void H::Hooks::init() {
 
 	oGetWeaponData = *reinterpret_cast<int*>(M::patternScan("client", ("48 8B 81 ? ? ? ? 85 D2 78 ? 48 83 FA ? 73 ? F3 0F 10 84 90 ? ? ? ? C3 F3 0F 10 80 ? ? ? ? C3 CC CC CC CC")) + 0x3);
