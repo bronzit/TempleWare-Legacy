@@ -16,7 +16,7 @@ namespace Config {
 	bool Night = false;
 
 	bool ScopeRemove = false;
-
+	bool SmokeRemove = false;
 	bool removelegs = false;
 
 	bool enemyChamsInvisible = false;
