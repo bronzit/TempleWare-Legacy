@@ -16,6 +16,9 @@ namespace H {
 	void* __fastcall hkLevelInit(void* pClientModeShared, const char* szNewMap);
 	void __fastcall hkChamsObject(void* pAnimatableSceneObjectDesc, void* pDx11, CMeshData* arrMeshDraw, int nDataCount, void* pSceneView, void* pSceneLayer, void* pUnk, void* pUnk2);
 	void __fastcall hkRenderFlashbangOverlay(void* a1, void* a2, void* a3, void* a4, void* a5);
+	void* __fastcall hkDrawSmokeArray(void* rcx, void* pSomePointer1, void* pSomePointer2, void* pSomePointer3, void* pSomePointer4, void* pSomePointer5);
+	void __fastcall hkDrawScopeOverlay(void* a1, void* a2);
+	void* __fastcall hkDrawLegs(void* a1, void* a2, void* a3, void* a4, void* a5);
 	inline float g_flActiveFov;
 	float hkGetRenderFov(void* rcx);
 
@@ -25,6 +28,9 @@ namespace H {
 	inline CInlineHookObj<decltype(&hkGetRenderFov)> GetRenderFov = { };
 	inline CInlineHookObj<decltype(&hkLevelInit)> LevelInit = { };
 	inline CInlineHookObj<decltype(&hkRenderFlashbangOverlay)> RenderFlashBangOverlay = { };
+	inline CInlineHookObj<decltype(&hkDrawSmokeArray)> DrawSmokeArray = { };
+	inline CInlineHookObj<decltype(&hkDrawScopeOverlay)> DrawScopeOverlay = { };
+	inline CInlineHookObj<decltype(&hkDrawLegs)> DrawLegs = { };
 
 	// inline hooks
 	inline int  oGetWeaponData;
