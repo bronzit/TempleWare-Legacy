@@ -16,10 +16,10 @@ Vector_t GetEntityEyePos(const C_CSPlayerPawn* Entity) {
 
     uintptr_t game_scene_node = *reinterpret_cast<uintptr_t*>((uintptr_t)Entity + SchemaFinder::Get(hash_32_fnv1a_const("C_BaseEntity->m_pGameSceneNode")));
 
-    auto Origin = *reinterpret_cast<Vector_t*>(game_scene_node + SchemaFinder::Get(hash_32_fnv1a_const("CGameSceneNode->m_vecAbsOrigin")));
-    auto ViewOffset = *reinterpret_cast<Vector_t*>((uintptr_t)Entity + SchemaFinder::Get(hash_32_fnv1a_const("C_BaseModelEntity->m_vecViewOffset")));
+    uintptr_t model = *reinterpret_cast<uintptr_t*>(game_scene_node + SchemaFinder::Get(hash_32_fnv1a_const("CSkeletonInstance->m_modelState")) + 0x80);
+    auto head = *reinterpret_cast<Vector_t*>(model + static_cast<unsigned long long>(6) * 32);
 
-    Vector_t Result = Origin + ViewOffset;
+    Vector_t result = head;
     if (!std::isfinite(Result.x) || !std::isfinite(Result.y) || !std::isfinite(Result.z))
         return {};
 
