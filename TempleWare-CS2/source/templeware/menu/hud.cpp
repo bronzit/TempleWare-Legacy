@@ -81,7 +81,7 @@ void Hud::render() {
     fpsStream << static_cast<int>(fps) << " FPS";
 
     // WaterMark
-    std::string watermarkText = "Dead_Insult | " + fpsStream.str() + " | " + timeBuffer;
+    std::string watermarkText = "Templeware | " + fpsStream.str() + " | " + timeBuffer;
 
     ImVec2 textSize = ImGui::CalcTextSize(watermarkText.c_str());
     float padding = 5.0f;
