@@ -14,6 +14,15 @@ public:
 	SCHEMA_ADD_OFFSET(int, m_iHealth, 0x344);
 	SCHEMA_ADD_OFFSET(int, m_iTeamNum, 0x3E3);
 
+	bool PostDataUpdate(int iUpdateType)
+	{
+		return M::vfunc<bool, 7>(this, iUpdateType);
+	}
+
+	bool is_weapon() {
+		return M::getvfunc<bool>(this, 158);
+	}
+
 	bool IsBasePlayer()
 	{
 		SchemaClassInfoData_t* pClassInfo;
@@ -21,7 +30,7 @@ public:
 		if (pClassInfo == nullptr)
 			return false;
 
-		return hash_32_fnv1a_const(pClassInfo->szName) == hash_32_fnv1a_const("C_CSPlayerPawn");
+		return HASH(pClassInfo->szName) == HASH("C_CSPlayerPawn");
 	}
 
 	bool IsViewmodelAttachment()
@@ -31,7 +40,7 @@ public:
 		if (pClassInfo == nullptr)
 			return false;
 
-		return hash_32_fnv1a_const(pClassInfo->szName) == hash_32_fnv1a_const("C_ViewmodelAttachmentModel");
+		return HASH(pClassInfo->szName) == HASH("C_ViewmodelAttachmentModel");
 	}
 
 	bool IsViewmodel()
@@ -41,7 +50,7 @@ public:
 		if (pClassInfo == nullptr)
 			return false;
 
-		return hash_32_fnv1a_const(pClassInfo->szName) == hash_32_fnv1a_const("C_CSGOViewModel");
+		return HASH(pClassInfo->szName) == HASH("C_CSGOViewModel");
 	}
 
 	bool IsPlayerController()
@@ -51,8 +60,8 @@ public:
 		if (!_class)
 			return false;
 
-		const uint32_t hash = hash_32_fnv1a_const(_class->szName);
+		const uint32_t hash = HASH(_class->szName);
 
-		return (hash == hash_32_fnv1a_const("CCSPlayerController"));
+		return (hash == HASH("CCSPlayerController"));
 	}
 };

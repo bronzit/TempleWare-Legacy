@@ -6,12 +6,16 @@
 bool I::Interfaces::init()
 {
     const HMODULE tier0_base = GetModuleHandleA("tier0.dll");
-    if (!tier0_base)
+    if (!(tier0_base))
         return false;
+
 
     bool success = true;
 
     // interfaces
+    InputSys = I::Get<IInputSystem>(("inputsystem.dll"), "InputSystemVersion00");
+    success &= (InputSys != nullptr);
+
     EngineClient = I::Get<IEngineClient>(("engine2.dll"), "Source2EngineToClient00");
     success &= (EngineClient != nullptr);
 
@@ -26,7 +30,8 @@ bool I::Interfaces::init()
     LoadKeyValues = reinterpret_cast<decltype(LoadKeyValues)>(GetProcAddress(tier0_base, "?LoadKV3@@YA_NPEAVKeyValues3@@PEAVCUtlString@@PEBDAEBUKV3ID_t@@2@Z"));
     ConMsg = reinterpret_cast<decltype(ConMsg)>(GetProcAddress(tier0_base, "?ConMsg@@YAXPEBDZZ"));
     ConColorMsg = reinterpret_cast<decltype(ConColorMsg)>(GetProcAddress(tier0_base, "?ConColorMsg@@YAXAEBVColor@@PEBDZZ"));
-
+    
+    printf("InputSystemVersion00: 0x%p\n", reinterpret_cast<void*>(InputSys));
     printf("Source2EngineToClient00: 0x%p\n", reinterpret_cast<void*>(EngineClient));
     printf("GameResourceServiceClientV00: 0x%p\n", reinterpret_cast<void*>(GameEntity));
     printf("CreateMaterial: 0x%p\n", reinterpret_cast<void*>(CreateMaterial));

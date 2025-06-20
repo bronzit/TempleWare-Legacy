@@ -1,4 +1,5 @@
 #include "CCSPlayerController.h"
+#include "../../../templeware/interfaces/interfaces.h"
 
 CCSPlayerController::CCSPlayerController(uintptr_t address) : address(address) {}
 

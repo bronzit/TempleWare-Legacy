@@ -3,9 +3,14 @@
 // used: callvfunc
 #include "..\..\utils\memory\vfunc\vfunc.h"
 #include <type_traits>
+#include "..\..\utils\schema\schema.h"
 class IEngineClient
 {
 public:
+	void send_cmd(const char* szCmd) {
+		return M::vfunc<void, 45>(this, 0, szCmd, 0x7FFEF001);
+	}
+
 	int maxClients()
 	{
 		return M::vfunc<int, 34U>(this);
@@ -30,5 +35,4 @@ public:
 	inline bool valid() {
 		return connected() && in_game();
 	}
-
 };

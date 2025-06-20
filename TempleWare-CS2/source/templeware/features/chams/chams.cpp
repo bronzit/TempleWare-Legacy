@@ -10,6 +10,33 @@
 #include "../../interfaces/CGameEntitySystem/CGameEntitySystem.h"
 #include "../../../cs2/datatypes/keyvalues/keyvalues.h"
 #include "../../../cs2/datatypes/cutlbuffer/cutlbuffer.h"
+#include <algorithm>
+
+ImVec4 HSVtoRGB(float h, float s, float v, float a = 1.0f) {
+    h = std::fmod(h, 1.0f);
+    int i = int(h * 6.0f);
+    float f = h * 6.0f - i;
+    float p = v * (1.0f - s);
+    float q = v * (1.0f - s * f);
+    float t = v * (1.0f - s * (1.0f - f));
+
+    switch (i % 6) {
+    case 0: return ImVec4(v, t, p, a);
+    case 1: return ImVec4(q, v, p, a);
+    case 2: return ImVec4(p, v, t, a);
+    case 3: return ImVec4(p, q, v, a);
+    case 4: return ImVec4(t, p, v, a);
+    case 5: return ImVec4(v, p, q, a);
+    }
+    return ImVec4(0, 0, 0, a);
+}
+
+static ImVec4 GetRainbowColorHSV(float speed = 1.0f, float alpha = 1.0f)
+{
+    static float time = 0.0f;
+    time += 0.001f * speed;
+    return HSVtoRGB(time, 1.0f, 1.0f, alpha);
+}
 
 CStrongHandle<CMaterial2> chams::create(const char* name, const char szVmatBuffer[])
 {
@@ -43,7 +70,7 @@ bool chams::Materials::init()
             Shader = "csgo_unlitgeneric.vfx"
         
             F_IGNOREZ = 0
-             F_DISABLE_Z_WRITE = 0
+            F_DISABLE_Z_WRITE = 0
             F_DISABLE_Z_BUFFERING = 0
             F_BLEND_MODE = 1
             F_TRANSLUCENT = 1
@@ -234,9 +261,19 @@ void __fastcall chams::hook(void* a1, void* a2, CMeshData* pMeshScene, int nMesh
 
     if (target == ChamsEntity::VIEWMODEL && Config::viewmodelChams) {
         pMeshScene->pMaterial = GetMaterial(Config::chamsMaterial, false);
-        pMeshScene->color.r = static_cast<uint8_t>(Config::colViewmodelChams.x * 255.0f);
-        pMeshScene->color.g = static_cast<uint8_t>(Config::colViewmodelChams.y * 255.0f);
-        pMeshScene->color.b = static_cast<uint8_t>(Config::colViewmodelChams.z * 255.0f);
+
+        if (Config::rainbow) {
+            ImVec4 rainbowColor = GetRainbowColorHSV(1.0f, Config::colViewmodelChams.w);
+            pMeshScene->color.r = static_cast<uint8_t>(rainbowColor.x * 255.0f);
+            pMeshScene->color.g = static_cast<uint8_t>(rainbowColor.y * 255.0f);
+            pMeshScene->color.b = static_cast<uint8_t>(rainbowColor.z * 255.0f);
+        }
+        else {
+            pMeshScene->color.r = static_cast<uint8_t>(Config::colViewmodelChams.x * 255.0f);
+            pMeshScene->color.g = static_cast<uint8_t>(Config::colViewmodelChams.y * 255.0f);
+            pMeshScene->color.b = static_cast<uint8_t>(Config::colViewmodelChams.z * 255.0f);
+        }
+
         pMeshScene->color.a = static_cast<uint8_t>(Config::colViewmodelChams.w * 255.0f);
         return original(a1, a2, pMeshScene, nMeshCount, pSceneView, pSceneLayer, pUnk, pUnk2);
     }

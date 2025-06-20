@@ -5,6 +5,8 @@
 #include "..\..\cs2\datatypes\cutlbuffer\cutlbuffer.h"
 #include "..\..\cs2\datatypes\keyvalues\keyvalues.h"
 #include "..\..\cs2\entity\C_Material\C_Material.h"
+#include "../interfaces/Source2/inputsystem.h"
+
 
 namespace I
 {
@@ -20,6 +22,7 @@ namespace I
 
 	inline IEngineClient* EngineClient = nullptr;
 	inline IGameResourceService* GameEntity = nullptr;
+	inline IInputSystem* InputSys = nullptr;
 	class Interfaces {
 	public:
 		bool init();

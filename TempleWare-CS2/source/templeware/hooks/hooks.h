@@ -5,6 +5,7 @@
 #include "../../cs2/datatypes/cutlbuffer/cutlbuffer.h"
 #include "../../cs2/datatypes/keyvalues/keyvalues.h"
 #include "../../cs2/entity/C_Material/C_Material.h"
+#include "../../cs2/entity/C_Env_Sky/c_env_sky.h"
 
 // Forward declaration
 class CMeshData;
@@ -19,8 +20,14 @@ namespace H {
 	void* __fastcall hkDrawSmokeArray(void* rcx, void* pSomePointer1, void* pSomePointer2, void* pSomePointer3, void* pSomePointer4, void* pSomePointer5);
 	void __fastcall hkDrawScopeOverlay(void* a1, void* a2);
 	void* __fastcall hkDrawLegs(void* a1, void* a2, void* a3, void* a4, void* a5);
+	bool __fastcall hkMouseInputEnabled(void* rcx);
+	void* __fastcall hkIsRelativeMouseMode(void* pThisptr, bool bActive);
+	void* __fastcall hkDrawViewModel(float* a1, float* offsets, float* fov);
 	inline float g_flActiveFov;
 	float hkGetRenderFov(void* rcx);
+	void __fastcall hkLightingModulate(void* pLightBinnerGPU, CSceneLightObject* pSceneLightObject, void* a3);
+	void* __fastcall hkUpdateSkybox(c_env_sky* sky);
+
 
 	inline CInlineHookObj<decltype(&hkChamsObject)> DrawArray = { };
 	inline CInlineHookObj<decltype(&hkFrameStageNotify)> FrameStageNotify = { };
@@ -31,11 +38,18 @@ namespace H {
 	inline CInlineHookObj<decltype(&hkDrawSmokeArray)> DrawSmokeArray = { };
 	inline CInlineHookObj<decltype(&hkDrawScopeOverlay)> DrawScopeOverlay = { };
 	inline CInlineHookObj<decltype(&hkDrawLegs)> DrawLegs = { };
+	inline CInlineHookObj<decltype(&hkDrawViewModel)> DrawViewModel = { };
+	inline CInlineHookObj<decltype(&hkLightingModulate)> LightingModulate = { };
+	inline CInlineHookObj<decltype(&hkMouseInputEnabled)> MouseInputEnabled = { };
+	inline CInlineHookObj<decltype(&hkIsRelativeMouseMode)> IsRelativeMouseMode = {};
+	inline CInlineHookObj<decltype(&hkUpdateSkybox)> UpdateSkybox = {};
+
 
 	// inline hooks
 	inline int  oGetWeaponData;
 	inline void* (__fastcall* ogGetBaseEntity)(void*, int);
-	inline  C_CSPlayerPawn* (__fastcall* oGetLocalPlayer)(int);
+	inline C_CSPlayerPawn* (__fastcall* oGetLocalPlayer)(int);
+	inline void* (__fastcall* UpdateSky)(void*);
 
 	class Hooks {
 	public:
