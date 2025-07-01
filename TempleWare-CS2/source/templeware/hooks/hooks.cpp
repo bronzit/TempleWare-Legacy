@@ -82,21 +82,21 @@ void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 
         switch (stage) {
 
-        case frame_handler_start: {
+        case frame_handler_start:
             FakeSpamm();
             break;
-        }
+        
 
-        case frame_prediction: {
+        case frame_prediction:
             Triggerbot();
             Aimbot();
             break;
-        }
+        
 
-        case frame_render: {
+        case frame_render:
             Esp::cache();
             break;
-        }
+        
 
         }
 
