@@ -60,7 +60,7 @@ void Triggerbot() {
     C_CSPlayerPawn* local = H::oGetLocalPlayer(0);
     if (!local || local->getHealth() <= 0) return;
 
-    static uintptr_t dwForceAttack = modules.getModule("client") + 0x184E8F0;
+    static uintptr_t dwForceAttack = modules.getModule("client") + 0x18508E0;
     static bool needRelease = false;
 
     const int targetIdx = local->getIDEntIndex();
@@ -94,7 +94,7 @@ void Triggerbot() {
     else if (needRelease) {
         *reinterpret_cast<int*>(dwForceAttack) = 256; // -attack
         needRelease = false;
-    } // åñëè ýòà øíÿãà áóäåò âûçûâàòüñÿ êàæäûé ðàç, îíî áóäåò ìåøàòü ñòðåëüáå >:|
+    } // Ã¥Ã±Ã«Ã¨ Ã½Ã²Ã  Ã¸Ã­Ã¿Ã£Ã  Ã¡Ã³Ã¤Ã¥Ã² Ã¢Ã»Ã§Ã»Ã¢Ã Ã²Ã¼Ã±Ã¿ ÃªÃ Ã¦Ã¤Ã»Ã© Ã°Ã Ã§, Ã®Ã­Ã® Ã¡Ã³Ã¤Ã¥Ã² Ã¬Ã¥Ã¸Ã Ã²Ã¼ Ã±Ã²Ã°Ã¥Ã«Ã¼Ã¡Ã¥ >:|
 }
 
 void FakeSpamm() {
@@ -156,7 +156,7 @@ void Aimbot() {
     static QAngle_t oldpunch = { 0.f, 0.f, 0.f };
 
     Vector_t localEyePos = GetEntityEyePos(localPlayer);
-    QAngle_t* viewAngles = (QAngle_t*)(modules.getModule("client") + 0x1A75620);
+    QAngle_t* viewAngles = (QAngle_t*)(modules.getModule("client") + 0x1A774D0);
 
     float bestFov = Config::aimbot_fov;
     C_CSPlayerPawn* bestTarget = nullptr;
