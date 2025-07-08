@@ -94,7 +94,7 @@ void Triggerbot() {
     else if (needRelease) {
         *reinterpret_cast<int*>(dwForceAttack) = 256; // -attack
         needRelease = false;
-    } // åñëè ýòà øíÿãà áóäåò âûçûâàòüñÿ êàæäûé ðàç, îíî áóäåò ìåøàòü ñòðåëüáå >:|
+    }
 }
 
 void FakeSpamm() {
@@ -156,7 +156,7 @@ void Aimbot() {
     static QAngle_t oldpunch = { 0.f, 0.f, 0.f };
 
     Vector_t localEyePos = GetEntityEyePos(localPlayer);
-    QAngle_t* viewAngles = (QAngle_t*)(modules.getModule("client") + 0x1A774D0);
+    QAngle_t* viewAngles = (QAngle_t*)(modules.getModule("client") + 0x1A774E0);
 
     float bestFov = Config::aimbot_fov;
     C_CSPlayerPawn* bestTarget = nullptr;
