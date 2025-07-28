@@ -60,7 +60,7 @@ void Triggerbot() {
     C_CSPlayerPawn* local = H::oGetLocalPlayer(0);
     if (!local || local->getHealth() <= 0) return;
 
-    static uintptr_t dwForceAttack = modules.getModule("client") + 0x18508E0;
+    static uintptr_t dwForceAttack = modules.getModule("client") + 0x18518E0;
     static bool needRelease = false;
 
     const int targetIdx = local->getIDEntIndex();
@@ -156,7 +156,7 @@ void Aimbot() {
     static QAngle_t oldpunch = { 0.f, 0.f, 0.f };
 
     Vector_t localEyePos = GetEntityEyePos(localPlayer);
-    QAngle_t* viewAngles = (QAngle_t*)(modules.getModule("client") + 0x1A774E0);
+    QAngle_t* viewAngles = (QAngle_t*)(modules.getModule("client") + 0x1A78650);
 
     float bestFov = Config::aimbot_fov;
     C_CSPlayerPawn* bestTarget = nullptr;
