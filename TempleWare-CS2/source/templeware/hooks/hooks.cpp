@@ -120,7 +120,7 @@ void H::Hooks::init() {
     oGetLocalPlayer = reinterpret_cast<decltype(oGetLocalPlayer)>(M::patternScan("client", ("48 83 EC 28 83 F9 FF ? ? 48 8B 0D 90 CB 6F 01 48 8D 54 24 30 48 8B 01 ? ? ? ? ? ? 8B 08 48 63 C1 4C 8D 05 86 0C 6F 01 33")));
     
     // UpdateWallsObject.Add((void*)M::patternScan("scenesystem", ("48 89 5C 24 10 48 89 6C 24 18 56 57 41 54 41 56 41 57 48 83 EC 40")), &hkUpdateSceneObject);
-    // FrameStageNotify.Add((void*)M::patternScan("client", ("48 89 5C 24 ? 56 48 83 EC 30 8B 05 ? ? ? ?")), &hkFrameStageNotify);
+    FrameStageNotify.Add((void*)M::patternScan("client", ("48 89 5c 24 ? 57 48 83 ec ? 39 15")), &hkFrameStageNotify); 
     // DrawArray.Add((void*)M::patternScan("scenesystem", ("48 8B C4 48 89 50 10 53 41 55 41 56 48 81 EC ? ? ? ? 4D 63 F1")), &chams::hook);
     GetRenderFov.Add((void*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? F3 0F 11 45 00 48 8B 5C 24 40"), 1), &hkGetRenderFov);
     LevelInit.Add((void*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? C6 83 ? ? ? ? ? C6 83"), 1), &hkLevelInit);
