@@ -116,7 +116,7 @@ void* __fastcall H::hkLevelInit(void* pClientModeShared, const char* szNewMap) {
 void H::Hooks::init() {
     oGetWeaponData = *reinterpret_cast<int*>(M::patternScan("client", ("48 8B 81 ? ? ? ? 85 D2 78 ? 48 83 FA ? 73 ? F3 0F 10 84 90 ? ? ? ? C3 F3 0F 10 80 ? ? ? ? C3 CC CC CC CC")) + 0x3);
     ogGetBaseEntity = reinterpret_cast<decltype(ogGetBaseEntity)>(M::patternScan("client", ("4C 8D 49 10 81 FA FE 7F 00 00 ? ? 8B CA C1 F9 09 83 F9 3F ? ? 48 63 C1 4D")));
-    oGetLocalPlayer = reinterpret_cast<decltype(oGetLocalPlayer)>(M::patternScan("client", ("48 83 EC 28 83 F9 FF ? ? 48 8B 0D 90 CB 6F 01 48 8D 54 24 30 48 8B 01 ? ? ? ? ? ? 8B 08 48 63 C1 4C 8D 05 86 0C 6F 01 33")));
+    oGetLocalPlayer = reinterpret_cast<decltype(oGetLocalPlayer)>(M::patternScan("client", ("48 83 EC 28 83 F9 FF ? ? 48 8B 0D B0 D1 6F 01 48 8D 54 24 30 48 8B 01 ? ? ? ? ? ? 8B 08 48 63 C1 4C 8D 05 A6 12 6F 01 33")));
     
     // UpdateWallsObject.Add((void*)M::patternScan("scenesystem", ("48 89 5C 24 10 48 89 6C 24 18 56 57 41 54 41 56 41 57 48 83 EC 40")), &hkUpdateSceneObject);
     FrameStageNotify.Add((void*)M::patternScan("client", ("48 89 5c 24 ? 57 48 83 ec ? 39 15")), &hkFrameStageNotify); 
