@@ -70,8 +70,7 @@ enum c_stages : std::uint32_t
     frame_net_update_postdataupdate_start = 5,
     frame_net_update_postdataupdate_end = 6,
     frame_net_update_end = 7,
-    frame_start = 8,
-    frame_render = 9
+    frame_start = 8
 };
 
 void __fastcall H::hkFrameStageNotify(void* a1, int stage)
