@@ -135,5 +135,3 @@ void H::Hooks::init() {
 
     MH_EnableHook(MH_ALL_HOOKS);
 }   
-// Ghidra: ' GetViewAngles ' @client.dll -> "40 53 48 83 EC 20 48 8B 01 48 8B DA ? ? ? ? ? ? 48 85 C0 ? ? 8B 80 C0 06 00 00 89 03"
-// Ghidra: ' SetViewAngles ' @client.dll -> "85 D2 ? ? 48 63 81 68 0D 00 00 F2 41 0F 10 00 85 C0 ? ? 48 69 D0 40 05 00 00 48 03 91 70 0D"
