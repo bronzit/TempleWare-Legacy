@@ -120,7 +120,7 @@ void H::Hooks::init() {
     
     // UpdateWallsObject.Add((void*)M::patternScan("scenesystem", ("48 89 5C 24 10 48 89 6C 24 18 56 57 41 54 41 56 41 57 48 83 EC 40")), &hkUpdateSceneObject);
     FrameStageNotify.Add((void*)M::patternScan("client", ("48 89 5c 24 ? 57 48 83 ec ? 39 15")), &hkFrameStageNotify); 
-    DrawArray.Add((void*)M::patternScan("scenesystem", ("48 8B C4 48 89 50 10 57 41 55 41 57 48 81 EC F0 00 00 00")), &chams::hook); // need update KV3 sig
+    DrawArray.Add((void*)M::patternScan("scenesystem", ("48 8B C4 48 89 50 10 53 41 55 41 57 48 81 EC F0 00")), &chams::hook); // need update KV3 sig
     GetRenderFov.Add((void*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? F3 0F 11 45 00 48 8B 5C 24 40"), 1), &hkGetRenderFov);
     LevelInit.Add((void*)M::getAbsoluteAddress(M::patternScan("client", "E8 ? ? ? ? C6 83 ? ? ? ? ? C6 83"), 1), &hkLevelInit);
     RenderFlashBangOverlay.Add((void*)M::patternScan("client", ("85 D2 0F 88 ? ? ? ? 55 56 41 55")), &hkRenderFlashbangOverlay);
