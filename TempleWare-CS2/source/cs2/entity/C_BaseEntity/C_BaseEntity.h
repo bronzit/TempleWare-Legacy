@@ -19,10 +19,6 @@ public:
 		return M::vfunc<bool, 7>(this, iUpdateType);
 	}
 
-	bool is_weapon() {
-		return M::getvfunc<bool>(this, 158);
-	}
-
 	bool IsBasePlayer()
 	{
 		SchemaClassInfoData_t* pClassInfo;
