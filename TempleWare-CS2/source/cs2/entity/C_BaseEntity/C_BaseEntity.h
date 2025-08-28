@@ -40,7 +40,7 @@ public:
 		if (pClassInfo == nullptr)
 			return false;
 
-		return HASH(pClassInfo->szName) == HASH("C_ViewmodelAttachmentModel");
+		return HASH(pClassInfo->szName) == HASH("C_CS2HudModelArms");
 	}
 
 	bool IsViewmodel()
@@ -50,7 +50,7 @@ public:
 		if (pClassInfo == nullptr)
 			return false;
 
-		return HASH(pClassInfo->szName) == HASH("C_CSGOViewModel");
+		return HASH(pClassInfo->szName) == HASH("C_CS2HudModelWeapon");
 	}
 
 	bool IsPlayerController()
