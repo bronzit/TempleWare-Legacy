@@ -9,9 +9,9 @@
 
 class C_CSPlayerPawn : public C_BaseEntity {
 public:
-	SCHEMA_ADD_OFFSET(Vector_t, m_vOldOrigin, 0x1324);
-	SCHEMA_ADD_OFFSET(Vector_t, m_vecViewOffset, 0xCB0);
-	SCHEMA_ADD_OFFSET(CCSPlayer_WeaponServices*, m_pWeaponServices, 0x11A8);
+	SCHEMA_ADD_OFFSET(Vector_t, m_vOldOrigin, 0x15B0);
+	SCHEMA_ADD_OFFSET(Vector_t, m_vecViewOffset, 0xD98);
+	SCHEMA_ADD_OFFSET(CCSPlayer_WeaponServices*, m_pWeaponServices, 0x1400);
 	C_CSPlayerPawn(uintptr_t address);
 
 	C_CSWeaponBase* GetActiveWeapon() const;
