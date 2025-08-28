@@ -11,8 +11,8 @@ class C_BaseEntity : public CEntityInstance
 {
 public:
 	schema(int, m_iMaxHealth, "C_BaseEntity->m_iMaxHealth");
-	SCHEMA_ADD_OFFSET(int, m_iHealth, 0x344);
-	SCHEMA_ADD_OFFSET(int, m_iTeamNum, 0x3E3);
+	SCHEMA_ADD_OFFSET(int, m_iHealth, 0x34C);
+	SCHEMA_ADD_OFFSET(int, m_iTeamNum, 0x3EB);
 
 	bool PostDataUpdate(int iUpdateType)
 	{
