@@ -12,7 +12,7 @@ class CMeshData;
 class CEntityIdentity;
 
 namespace H {
-	void* __fastcall hkUpdateSceneObject(C_AggregateSceneObject* object, void* unk);
+	// void* __fastcall hkUpdateSceneObject(C_AggregateSceneObject* object, void* unk);
 	void __fastcall hkFrameStageNotify(void* a1, int stage);
 	void* __fastcall hkLevelInit(void* pClientModeShared, const char* szNewMap);
 	void __fastcall hkChamsObject(void* pAnimatableSceneObjectDesc, void* pDx11, CMeshData* arrMeshDraw, int nDataCount, void* pSceneView, void* pSceneLayer, void* pUnk, void* pUnk2);
@@ -26,12 +26,12 @@ namespace H {
 	inline float g_flActiveFov;
 	float hkGetRenderFov(void* rcx);
 	void __fastcall hkLightingModulate(void* pLightBinnerGPU, CSceneLightObject* pSceneLightObject, void* a3);
-	void* __fastcall hkUpdateSkybox(c_env_sky* sky);
+	// void* __fastcall hkUpdateSkybox(c_env_sky* sky);
 
 
 	inline CInlineHookObj<decltype(&hkChamsObject)> DrawArray = { };
 	inline CInlineHookObj<decltype(&hkFrameStageNotify)> FrameStageNotify = { };
-	inline CInlineHookObj<decltype(&hkUpdateSceneObject)> UpdateWallsObject = { };
+	// inline CInlineHookObj<decltype(&hkUpdateSceneObject)> UpdateWallsObject = { };
 	inline CInlineHookObj<decltype(&hkGetRenderFov)> GetRenderFov = { };
 	inline CInlineHookObj<decltype(&hkLevelInit)> LevelInit = { };
 	inline CInlineHookObj<decltype(&hkRenderFlashbangOverlay)> RenderFlashBangOverlay = { };
@@ -42,14 +42,13 @@ namespace H {
 	inline CInlineHookObj<decltype(&hkLightingModulate)> LightingModulate = { };
 	inline CInlineHookObj<decltype(&hkMouseInputEnabled)> MouseInputEnabled = { };
 	inline CInlineHookObj<decltype(&hkIsRelativeMouseMode)> IsRelativeMouseMode = {};
-	inline CInlineHookObj<decltype(&hkUpdateSkybox)> UpdateSkybox = {};
+	// inline CInlineHookObj<decltype(&hkUpdateSkybox)> UpdateSkybox = {};
 
 
 	// inline hooks
 	inline int  oGetWeaponData;
 	inline void* (__fastcall* ogGetBaseEntity)(void*, int);
 	inline C_CSPlayerPawn* (__fastcall* oGetLocalPlayer)(int);
-	inline void* (__fastcall* UpdateSky)(void*);
 
 	class Hooks {
 	public:
