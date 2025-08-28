@@ -18,7 +18,7 @@
 #include "../interfaces/interfaces.h"
 #include "../features/aim/aim.h"
 
-
+/*
 void* __fastcall H::hkUpdateSkybox(c_env_sky* sky) {
     static auto org = UpdateSkybox.GetOriginal();
     
@@ -46,7 +46,7 @@ void* __fastcall H::hkUpdateSkybox(c_env_sky* sky) {
 
     return org(sky);
 }
-
+*/
 
 void* __fastcall H::hkDrawLegs(void* a1, void* a2, void* a3, void* a4, void* a5) {
     if (Config::removelegs) return nullptr;
@@ -59,20 +59,6 @@ void __fastcall H::hkDrawScopeOverlay(void* a1, void* a2) {
     return DrawScopeOverlay.GetOriginal()(a1, a2);
 }
 
-
-enum c_stages : std::uint32_t
-{
-    frame_handler_start = 0,
-    frame_handler_end = 1,
-    frame_prediction = 3,
-    frame_net_full_frame_update_on_remove = 2,
-    frame_net_update_start = 4,
-    frame_net_update_postdataupdate_start = 5,
-    frame_net_update_postdataupdate_end = 6,
-    frame_net_update_end = 7,
-    frame_start = 8
-};
-
 void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 {
     FrameStageNotify.GetOriginal()(a1, stage);
@@ -81,18 +67,18 @@ void __fastcall H::hkFrameStageNotify(void* a1, int stage)
 
         switch (stage) {
 
-        case frame_handler_start:
+        case 1:
             FakeSpamm();
             break;
         
 
-        case frame_prediction:
+        case 2:
             Triggerbot();
             Aimbot();
             break;
         
 
-        case frame_render:
+        case 8:
             Esp::cache();
             break;
         
